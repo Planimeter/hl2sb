@@ -1,0 +1,36 @@
+"GameInfo"
+{
+	game	"Half-Life 2: Sandbox"
+	icon	"icon_hl2"
+	title	"HALF+LIFE'"
+	title2	"sandbox"
+	nomodels 0
+	nohimodel 1
+	nocrosshair 1
+	hidden_maps
+	{
+		"test_speakers"		1
+		"test_hardware"		1
+	}
+	developer "Team Sandbox"
+	developer_url "http://www.half-life2sandbox.com/"
+	manual "http://www.half-life2sandbox.com/manual"
+
+
+	FileSystem
+	{
+		SteamAppId				218		// GCF for Source SDK Base 2007
+		ToolsAppId				211		// Tools will load this (ie: source SDK caches) to get things like materials\debug, materials\editor, etc.
+
+		//Orange box sdk allows an extra appid to be defined here to mount additional content. 320 is HL2MP
+		AdditionalContentId			320
+		
+
+		SearchPaths
+		{
+			Game				|gameinfo_path|.
+			Game				|all_source_engine_paths|hl2mp
+			Game				|all_source_engine_paths|hl2
+		}
+	}
+}

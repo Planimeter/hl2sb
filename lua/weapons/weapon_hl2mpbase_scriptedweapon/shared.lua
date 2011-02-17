@@ -1,0 +1,129 @@
+--========== Copyleft © 2010, Team Sandbox, Some rights reserved. ===========--
+--
+-- Purpose: Initialize the base scripted weapon.
+--
+--===========================================================================--
+
+SWEP.printname				= "#HL2_357Handgun"
+SWEP.viewmodel				= "models/weapons/v_357.mdl"
+SWEP.playermodel			= "models/weapons/w_357.mdl"
+SWEP.anim_prefix			= "python"
+SWEP.bucket					= 1
+SWEP.bucket_position		= 1
+
+SWEP.clip_size				= 6
+SWEP.clip2_size				= -1
+
+SWEP.default_clip			= 6
+SWEP.default_clip2			= -1
+
+SWEP.primary_ammo			= "357"
+SWEP.secondary_ammo			= "None"
+
+SWEP.weight					= 7
+SWEP.item_flags				= 0
+SWEP.damage					= 75
+
+SWEP.showusagehint			= 0
+SWEP.autoswitchto			= 1
+SWEP.autoswitchfrom			= 1
+SWEP.BuiltRightHanded		= 1
+SWEP.AllowFlipping			= 1
+SWEP.MeleeWeapon			= 0
+
+function SWEP:Initialize()
+	self.m_bReloadsSingly	= false;
+	self.m_bFiresUnderwater	= false;
+end
+
+function SWEP:Precache()
+end
+
+function SWEP:PrimaryAttack()
+	-- Only the player fires this way so we can cast
+	local pPlayer = self:GetOwner();
+
+	if ( not pPlayer ) then
+		return;
+	end
+
+	if ( self.m_iClip1 <= 0 ) then
+		if ( not self.m_bFireOnEmpty ) then
+			self:Reload();
+		else
+			self:WeaponSound( EMPTY );
+			self.m_flNextPrimaryAttack = 0.15;
+		end
+
+		return;
+	end
+
+	self:WeaponSound( SINGLE );
+	pPlayer:DoMuzzleFlash();
+
+	-- self:SendWeaponAnim( ACT_VM_PRIMARYATTACK or 180 );
+	pPlayer:SetAnimation( PLAYER_ATTACK1 );
+	-- pPlayer:DoAnimationEvent( PLAYERANIMEVENT_ATTACK_PRIMARY );
+
+	self.m_flNextPrimaryAttack = gpGlobals.curtime() + 0.75;
+	self.m_flNextSecondaryAttack = gpGlobals.curtime() + 0.75;
+
+	self.m_iClip1 = self.m_iClip1 - 1;
+
+	local vecSrc		= pPlayer:Weapon_ShootPosition();
+	local vecAiming		= pPlayer:GetAutoaimVector( AUTOAIM_5DEGREES );
+
+	local info = { 1, vecSrc, vecAiming, vec3_origin, MAX_TRACE_LENGTH, self.m_iPrimaryAmmoType };
+	info.m_pAttacker = pPlayer;
+
+	-- Fire the bullets, and force the first shot to be perfectly accuracy
+	pPlayer:FireBullets( info );
+
+	--Disorient the player
+	local angles = pPlayer:GetLocalAngles();
+
+	-- angles.x = angles.x + random.RandomInt( -1, 1 );
+	-- angles.y = angles.y + random.RandomInt( -1, 1 );
+	-- angles.z = 0;
+
+if not CLIENT_LUA then
+	pPlayer:SnapEyeAngles( angles );
+end
+
+	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );
+
+	if ( not self.m_iClip1 and pPlayer:GetAmmoCount( self.m_iPrimaryAmmoType ) <= 0 ) then
+		-- HEV suit - indicate out of ammo condition
+		pPlayer:SetSuitUpdate( "!HEV_AMO0", 0, 0 );
+	end
+end
+
+function SWEP:SecondaryAttack()
+end
+
+function SWEP:Reload()
+	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), ACT_VM_RELOAD );
+	if ( fRet ) then
+--		WeaponSound( RELOAD );
+		self:GetOwner():DoAnimationEvent( PLAYERANIMEVENT_RELOAD );
+	end
+	return fRet;
+end
+
+function SWEP:Think()
+end
+
+function SWEP:CanHolster()
+end
+
+function SWEP:Holster()
+end
+
+function SWEP:Deploy()
+end
+
+function SWEP:ItemPostFrame()
+end
+
+function SWEP:DoImpactEffect()
+end
