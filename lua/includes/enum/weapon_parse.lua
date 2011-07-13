@@ -9,25 +9,25 @@
 -- Used to play sounds defined in the weapon's classname.txt file
 -- This needs to match pWeaponSoundCategories in weapon_parse.cpp
 -- ------------------------------------------------------------
-EMPTY = 1
-SINGLE = 2
-SINGLE_NPC = 3
-WPN_DOUBLE = 4 -- Can't be "DOUBLE" because windows.h uses it.
-DOUBLE_NPC = 5
-BURST = 6
-RELOAD = 7
-RELOAD_NPC = 8
-MELEE_MISS = 9
-MELEE_HIT = 10
-MELEE_HIT_WORLD = 11
-SPECIAL1 = 12
-SPECIAL2 = 13
-SPECIAL3 = 14
-TAUNT = 15
+EMPTY = 0
+SINGLE = 1
+SINGLE_NPC = 2
+WPN_DOUBLE = 3 -- Can't be "DOUBLE" because windows.h uses it.
+DOUBLE_NPC = 4
+BURST = 5
+RELOAD = 6
+RELOAD_NPC = 7
+MELEE_MISS = 8
+MELEE_HIT = 9
+MELEE_HIT_WORLD = 10
+SPECIAL1 = 11
+SPECIAL2 = 12
+SPECIAL3 = 13
+TAUNT = 14
 
 -- Add new shoot sound types here
 
-NUM_SHOOT_SOUND_TYPES = 16
+NUM_SHOOT_SOUND_TYPES = 15
 
 MAX_SHOOT_SOUNDS	= 16		-- Maximum number of shoot sounds per shoot type
 

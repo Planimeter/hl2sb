@@ -13,16 +13,21 @@ SWEP.bucket_position		= 1
 
 SWEP.clip_size				= 6
 SWEP.clip2_size				= -1
-
 SWEP.default_clip			= 6
 SWEP.default_clip2			= -1
-
 SWEP.primary_ammo			= "357"
 SWEP.secondary_ammo			= "None"
 
 SWEP.weight					= 7
 SWEP.item_flags				= 0
+
 SWEP.damage					= 75
+
+SWEP.SoundData				=
+{
+	empty					= "Weapon_Pistol.Empty",
+	single_shot				= "Weapon_357.Single"
+}
 
 SWEP.showusagehint			= 0
 SWEP.autoswitchto			= 1
@@ -61,7 +66,7 @@ function SWEP:PrimaryAttack()
 	self:WeaponSound( SINGLE );
 	pPlayer:DoMuzzleFlash();
 
-	-- self:SendWeaponAnim( ACT_VM_PRIMARYATTACK or 180 );
+	self:SendWeaponAnim( ACT_VM_PRIMARYATTACK or 180 );
 	pPlayer:SetAnimation( PLAYER_ATTACK1 );
 	-- pPlayer:DoAnimationEvent( PLAYERANIMEVENT_ATTACK_PRIMARY );
 
@@ -73,7 +78,7 @@ function SWEP:PrimaryAttack()
 	local vecSrc		= pPlayer:Weapon_ShootPosition();
 	local vecAiming		= pPlayer:GetAutoaimVector( AUTOAIM_5DEGREES );
 
-	local info = { 1, vecSrc, vecAiming, vec3_origin, MAX_TRACE_LENGTH, self.m_iPrimaryAmmoType };
+	local info = { m_iShots = 1, m_vecSrc = vecSrc, m_vecDirShooting = vecAiming, m_vecSpread = vec3_origin, m_flDistance = MAX_TRACE_LENGTH, m_iAmmoType = self.m_iPrimaryAmmoType };
 	info.m_pAttacker = pPlayer;
 
 	-- Fire the bullets, and force the first shot to be perfectly accuracy
@@ -82,12 +87,12 @@ function SWEP:PrimaryAttack()
 	--Disorient the player
 	local angles = pPlayer:GetLocalAngles();
 
-	-- angles.x = angles.x + random.RandomInt( -1, 1 );
-	-- angles.y = angles.y + random.RandomInt( -1, 1 );
-	-- angles.z = 0;
+	angles.x = angles.x + random.RandomInt( -1, 1 );
+	angles.y = angles.y + random.RandomInt( -1, 1 );
+	angles.z = 0;
 
 if not CLIENT_LUA then
-	pPlayer:SnapEyeAngles( angles );
+	-- pPlayer:SnapEyeAngles( angles );
 end
 
 	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );
@@ -104,7 +109,7 @@ end
 function SWEP:Reload()
 	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), ACT_VM_RELOAD );
 	if ( fRet ) then
---		WeaponSound( RELOAD );
+		self:WeaponSound( RELOAD );
 		self:GetOwner():DoAnimationEvent( PLAYERANIMEVENT_RELOAD );
 	end
 	return fRet;

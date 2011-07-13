@@ -24,8 +24,8 @@ function Get( strClassname )
     return nil
   end
   tWeapon = table.copy( tWeapon )
-  if ( tWeapon.Base ~= strClassname ) then
-    local tBaseWeapon = Get( tWeapon.Base )
+  if ( tWeapon.__base ~= strClassname ) then
+    local tBaseWeapon = Get( tWeapon.__base )
     if ( not tBaseWeapon ) then
 	  Warning( "WARNING: Attempted to initialize weapon \"" .. strClassname .. "\" with non-existing base class!\n" )
 	else
