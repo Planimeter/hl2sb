@@ -90,7 +90,7 @@ if not CLIENT_LUA then
 	pMelon:SetAbsAngles( pPlayer:GetAbsAngles() );
 	pMelon:Spawn();
 	pMelon:SetOwnerEntity( pPlayer );
-	pMelon:VPhysicsGetObject():SetVelocity( vecThrow );
+	pMelon:VPhysicsGetObject():SetVelocity( vecThrow, vec3_origin );
 end
 
 	--Disorient the player
