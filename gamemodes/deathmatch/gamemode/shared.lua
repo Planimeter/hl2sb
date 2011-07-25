@@ -20,6 +20,12 @@ function GM:Initialize()
 end
 
 function GM:Shutdown()
+  -- Andrew; this is a Lua-side implemented hook. We have a proper C level hook
+  -- call for Initialize which is called directly after the gamemode is loaded.
+  -- While one might wonder why Shutdown isn't implemented at the C level as
+  -- well, it's simply because it would be called within LevelShutdown, causing
+  -- it's implementation to be redundant.
+  gamemode.Call( "Shutdown" )
 end
 
 function GM:LevelShutdown()

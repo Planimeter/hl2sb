@@ -92,7 +92,7 @@ function SWEP:PrimaryAttack()
 	angles.z = 0;
 
 if not CLIENT_LUA then
-	-- pPlayer:SnapEyeAngles( angles );
+	pPlayer:SnapEyeAngles( angles );
 end
 
 	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );

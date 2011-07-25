@@ -7,41 +7,6 @@
 SWEP.__base					= "weapon_hl2mpbase_scriptedweapon"
 
 SWEP.printname				= "MELON SHOOTER"
-SWEP.viewmodel				= "models/weapons/v_357.mdl"
-SWEP.playermodel			= "models/weapons/w_357.mdl"
-SWEP.anim_prefix			= "python"
-SWEP.bucket					= 1
-SWEP.bucket_position		= 2
-
-SWEP.clip_size				= 6
-SWEP.clip2_size				= -1
-SWEP.default_clip			= 6
-SWEP.default_clip2			= -1
-SWEP.primary_ammo			= "357"
-SWEP.secondary_ammo			= "None"
-
-SWEP.weight					= 7
-SWEP.item_flags				= 0
-
-SWEP.damage					= 75
-
-SWEP.SoundData				=
-{
-	empty					= "Weapon_Pistol.Empty",
-	single_shot				= "Weapon_357.Single"
-}
-
-SWEP.showusagehint			= 0
-SWEP.autoswitchto			= 1
-SWEP.autoswitchfrom			= 1
-SWEP.BuiltRightHanded		= 1
-SWEP.AllowFlipping			= 1
-SWEP.MeleeWeapon			= 0
-
-function SWEP:Initialize()
-	self.m_bReloadsSingly	= false;
-	self.m_bFiresUnderwater	= false;
-end
 
 function SWEP:Precache()
 	_R.CBaseEntity.PrecacheModel( "models/props_junk/watermelon01.mdl" )
@@ -101,7 +66,7 @@ end
 	angles.z = 0;
 
 if not CLIENT_LUA then
-	-- pPlayer:SnapEyeAngles( angles );
+	pPlayer:SnapEyeAngles( angles );
 end
 
 	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );
@@ -110,34 +75,4 @@ end
 		-- HEV suit - indicate out of ammo condition
 		pPlayer:SetSuitUpdate( "!HEV_AMO0", 0, 0 );
 	end
-end
-
-function SWEP:SecondaryAttack()
-end
-
-function SWEP:Reload()
-	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), ACT_VM_RELOAD );
-	if ( fRet ) then
-		self:WeaponSound( RELOAD );
-		self:GetOwner():DoAnimationEvent( PLAYERANIMEVENT_RELOAD );
-	end
-	return fRet;
-end
-
-function SWEP:Think()
-end
-
-function SWEP:CanHolster()
-end
-
-function SWEP:Holster()
-end
-
-function SWEP:Deploy()
-end
-
-function SWEP:ItemPostFrame()
-end
-
-function SWEP:DoImpactEffect()
 end
