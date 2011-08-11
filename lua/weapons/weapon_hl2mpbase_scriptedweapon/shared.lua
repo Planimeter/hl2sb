@@ -36,6 +36,24 @@ SWEP.BuiltRightHanded		= 1
 SWEP.AllowFlipping			= 1
 SWEP.MeleeWeapon			= 0
 
+-- TODO; implement Activity enum library!!
+SWEP.m_acttable				=
+{
+	{ 1048, 977, false },
+	{ 1049, 979, false },
+
+	{ 1058, 978, false },
+	{ 1061, 980, false },
+
+	{ 1073, 981, false },
+	{ 1077, 981, false },
+
+	{ 1090, 982, false },
+	{ 1093, 982, false },
+
+	{ 1064, 983, false },
+};
+
 function SWEP:Initialize()
 	self.m_bReloadsSingly	= false;
 	self.m_bFiresUnderwater	= false;
