@@ -10,7 +10,7 @@ GM.Developer	= "Team Sandbox"
 GM.Manual		= "http://www.half-life2sandbox.com/manual"
 
 function GM:Initialize()
-if ( not CLIENT_LUA ) then
+if ( not _CLIENT ) then
   engine.ServerCommand( "mp_falldamage 1\n" )
   engine.ServerCommand( "mp_flashlight 1\n" )
 end

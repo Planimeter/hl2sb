@@ -10,6 +10,7 @@ local print = print
 local FStrEq = FStrEq
 local flTimeFStrEq
 local flTime__eq
+local Warning = dbg.Warning
 
 local strChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~"
 local srahCtrs = "~._-9876543210ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba"

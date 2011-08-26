@@ -5,7 +5,7 @@
 --===========================================================================--
 
 local ConCommand = ConCommand
-local Warning = Warning
+local Warning = dbg.Warning
 local tostring = tostring
 local pcall = pcall
 

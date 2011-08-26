@@ -7,7 +7,7 @@
 _BASE_WEAPON = "weapon_hl2mpbase_scriptedweapon"
 
 local table = table
-local Warning = Warning
+local Warning = dbg.Warning
 
 module( "weapon" )
 

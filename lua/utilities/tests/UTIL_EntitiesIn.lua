@@ -10,7 +10,7 @@
 local vecOrigin
 local count
 local pList
-local UTIL_EntitiesInSphere = UTIL_EntitiesInSphere
+local UTIL_EntitiesInSphere = UTIL.EntitiesInSphere
 local MAX_ENTITYARRAY = 1024
 local SPHERE_RADIUS_OUTER = 128
 local pairs = pairs

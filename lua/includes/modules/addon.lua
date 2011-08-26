@@ -5,7 +5,7 @@
 --===========================================================================--
 
 local pairs = pairs
-local Warning = Warning
+local Warning = dbg.Warning
 local table = table
 local filesystem = filesystem
 
