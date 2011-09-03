@@ -6,10 +6,16 @@
 
 include( "shared.lua" )
 
+function GM:CanShowSpeakerLabels()
+end
+
+function GM:DrawHeadLabels( pPlayer )
+end
+
 function GM:GetPlayerTextColor( entindex, r, g, b )
 end
 
-function GM:CanShowSpeakerLabels()
+function GM:HudElementShouldDraw( pElementName )
 end
 
 function GM:LevelInitPreEntity()
@@ -19,10 +25,4 @@ function GM:LevelInitPostEntity()
 end
 
 function GM:ShouldDrawLocalPlayer()
-end
-
-function GM:HudElementShouldDraw( pElementName )
-end
-
-function GM:DrawHeadLabels( pPlayer )
 end
