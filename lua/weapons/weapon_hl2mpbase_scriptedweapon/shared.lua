@@ -74,19 +74,19 @@ function SWEP:PrimaryAttack()
 		if ( not self.m_bFireOnEmpty ) then
 			self:Reload();
 		else
-			self:WeaponSound( EMPTY );
+			self:WeaponSound( 0 );
 			self.m_flNextPrimaryAttack = 0.15;
 		end
 
 		return;
 	end
 
-	self:WeaponSound( SINGLE );
+	self:WeaponSound( 1 );
 	pPlayer:DoMuzzleFlash();
 
-	self:SendWeaponAnim( ACT_VM_PRIMARYATTACK or 180 );
-	pPlayer:SetAnimation( PLAYER_ATTACK1 );
-	-- pPlayer:DoAnimationEvent( PLAYERANIMEVENT_ATTACK_PRIMARY );
+	self:SendWeaponAnim( 180 );
+	pPlayer:SetAnimation( 5 );
+	-- pPlayer:DoAnimationEvent( 0 );
 
 	self.m_flNextPrimaryAttack = gpGlobals.curtime() + 0.75;
 	self.m_flNextSecondaryAttack = gpGlobals.curtime() + 0.75;
@@ -94,7 +94,7 @@ function SWEP:PrimaryAttack()
 	self.m_iClip1 = self.m_iClip1 - 1;
 
 	local vecSrc		= pPlayer:Weapon_ShootPosition();
-	local vecAiming		= pPlayer:GetAutoaimVector( AUTOAIM_5DEGREES );
+	local vecAiming		= pPlayer:GetAutoaimVector( 0.08715574274766 );
 
 	local info = { m_iShots = 1, m_vecSrc = vecSrc, m_vecDirShooting = vecAiming, m_vecSpread = vec3_origin, m_flDistance = MAX_TRACE_LENGTH, m_iAmmoType = self.m_iPrimaryAmmoType };
 	info.m_pAttacker = pPlayer;
@@ -109,7 +109,7 @@ function SWEP:PrimaryAttack()
 	angles.y = angles.y + random.RandomInt( -1, 1 );
 	angles.z = 0;
 
-if not CLIENT_LUA then
+if not _CLIENT then
 	pPlayer:SnapEyeAngles( angles );
 end
 
@@ -125,10 +125,10 @@ function SWEP:SecondaryAttack()
 end
 
 function SWEP:Reload()
-	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), ACT_VM_RELOAD );
+	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), 182 );
 	if ( fRet ) then
-		self:WeaponSound( RELOAD );
-		self:GetOwner():DoAnimationEvent( PLAYERANIMEVENT_RELOAD );
+		self:WeaponSound( 6 );
+		self:GetOwner():DoAnimationEvent( 3 );
 	end
 	return fRet;
 end

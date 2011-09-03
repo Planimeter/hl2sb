@@ -9,7 +9,7 @@ hook.Add( "PlayerTraceAttack", "PlayerTraceTeslaHitboxesAttack", function( pPlay
   if ( pEntity ~= NULL ) then
     -- This is taken straight out of CNPC_Hunter::TeslaThink()
 	local data = CEffectData();
-	if ( CLIENT_LUA ) then
+	if ( _CLIENT ) then
 	  data.m_hEntity = pEntity
 	else
 	  data.m_nEntIndex = pEntity:entindex();
