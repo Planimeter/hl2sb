@@ -11,5 +11,5 @@ include( "shared.lua" )
 function ENT:ClientThink()
 	Msg( "Hello, client!\n" )
 	-- Andrew; think every 5 seconds.
-	self:SetClientNextThink( gpGlobals.curtime() + 5.0 )
+	self:SetNextClientThink( gpGlobals.curtime() + 5.0 )
 end

@@ -20,3 +20,13 @@ function ENT:Initialize()
 		Warning("ERROR!: Can't create physics object for " .. self:GetModelName() .. "\n" );
 	end
 end
+
+local velocity, angularVelocity;
+
+function ENT:VPhysicsUpdate( pPhysics )
+	if ( pPhysics:IsGravityEnabled() ) then
+		pPhysics:EnableGravity( false )
+	end
+	velocity, angularVelocity = pPhysics:GetVelocity()
+	pPhysics:SetVelocity( velocity - ( velocity / 10 ), angularVelocity - ( angularVelocity / 10 ) )
+end
