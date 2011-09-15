@@ -30,5 +30,8 @@ end
 function GM:LevelInitPostEntity()
 end
 
+function GM:HudViewportPaint()
+end
+
 function GM:ShouldDrawLocalPlayer()
 end

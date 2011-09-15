@@ -8,6 +8,9 @@ local Msg = dbg.Msg
 
 include( "shared.lua" )
 
+function ENT:DrawModel( flags )
+end
+
 function ENT:ClientThink()
 	Msg( "Hello, client!\n" )
 	-- Andrew; think every 5 seconds.
