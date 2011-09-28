@@ -69,6 +69,9 @@ end
 function GM:InitHUD( pPlayer )
 end
 
+function GM:ItemShouldRespawn( pItem )
+end
+
 function GM:LevelInit( strMapName, strMapEntities, strOldLevel, strLandmarkName, loadGame, background )
 end
 

@@ -7,7 +7,11 @@
 include( "shared.lua" )
 
 function GM:FlItemRespawnTime( pItem )
-  return 0xFFFFFFFF
+  return -1
+end
+
+function GM:ItemShouldRespawn( pItem )
+  return 6 -- GR_ITEM_RESPAWN_NO
 end
 
 function GM:GiveDefaultItems( pPlayer )

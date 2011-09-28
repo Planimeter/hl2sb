@@ -17,5 +17,13 @@ end
 end
 
 function GM:FlWeaponRespawnTime( pWeapon )
-  return 0xFFFFFFFF
+  return -1
+end
+
+function GM:FlWeaponTryRespawn( pWeapon )
+  return 0
+end
+
+function GM:WeaponShouldRespawn( pWeapon )
+  return 2 -- GR_WEAPON_RESPAWN_NO
 end
