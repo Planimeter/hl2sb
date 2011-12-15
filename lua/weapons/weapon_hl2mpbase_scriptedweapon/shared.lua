@@ -86,7 +86,7 @@ function SWEP:PrimaryAttack()
 
 	self:SendWeaponAnim( 180 );
 	pPlayer:SetAnimation( 5 );
-	-- pPlayer:DoAnimationEvent( 0 );
+	ToHL2MPPlayer(pPlayer):DoAnimationEvent( 0 );
 
 	self.m_flNextPrimaryAttack = gpGlobals.curtime() + 0.75;
 	self.m_flNextSecondaryAttack = gpGlobals.curtime() + 0.75;
@@ -127,8 +127,8 @@ end
 function SWEP:Reload()
 	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), 182 );
 	if ( fRet ) then
-		self:WeaponSound( 6 );
-		self:GetOwner():DoAnimationEvent( 3 );
+--		self:WeaponSound( 6 );
+		ToHL2MPPlayer(self:GetOwner()):DoAnimationEvent( 3 );
 	end
 	return fRet;
 end
