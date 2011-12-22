@@ -18,14 +18,14 @@ local tWeapons = {}
 -- Input  : strName - Name of the weapon
 -- Output : table
 -------------------------------------------------------------------------------
-function Get( strClassname )
+function get( strClassname )
   local tWeapon = tWeapons[ strClassname ]
   if ( not tWeapon ) then
     return nil
   end
   tWeapon = table.copy( tWeapon )
   if ( tWeapon.__base ~= strClassname ) then
-    local tBaseWeapon = Get( tWeapon.__base )
+    local tBaseWeapon = get( tWeapon.__base )
     if ( not tBaseWeapon ) then
 	  Warning( "WARNING: Attempted to initialize weapon \"" .. strClassname .. "\" with non-existing base class!\n" )
 	else
@@ -40,19 +40,19 @@ end
 -- Input  :
 -- Output : table
 -------------------------------------------------------------------------------
-function GetWeapons()
+function getweapons()
   return tWeapons
 end
 
 -------------------------------------------------------------------------------
 -- Purpose: Registers a weapon
 -- Input  : tWeapon - Weapon table
---			strClassname - Name of the weapon
---			bReload - Whether or not we're reloading this weapon data
+--		      strClassname - Name of the weapon
+--		      bReload - Whether or not we're reloading this weapon data
 -- Output :
 -------------------------------------------------------------------------------
-function Register( tWeapon, strClassname, bReload )
-  if ( Get( strClassname ) ~= nil and bReload ~= true ) then
+function register( tWeapon, strClassname, bReload )
+  if ( get( strClassname ) ~= nil and bReload ~= true ) then
     return
   end
   tWeapons[ strClassname ] = tWeapon

@@ -28,14 +28,14 @@ local tEntityBaseClasses = {
 -- Input  : strName - Name of the entity
 -- Output : table
 -------------------------------------------------------------------------------
-function Get( strClassname )
+function get( strClassname )
   local tEntity = tEntities[ strClassname ]
   if ( not tEntity ) then
     return nil
   end
   tEntity = table.copy( tEntity )
   if ( not table.hasvalue( tEntityBaseClasses, tEntity.__base ) ) then
-    local tBaseEntity = Get( tEntity.__base )
+    local tBaseEntity = get( tEntity.__base )
     if ( not tBaseEntity ) then
 	  Warning( "WARNING: Attempted to initialize entity \"" .. strClassname .. "\" with non-existing base class!\n" )
 	else
@@ -50,7 +50,7 @@ end
 -- Input  :
 -- Output : table
 -------------------------------------------------------------------------------
-function GetEntities()
+function getentities()
   return tEntities
 end
 
@@ -61,8 +61,8 @@ end
 --			bReload - Whether or not we're reloading this entity data
 -- Output :
 -------------------------------------------------------------------------------
-function Register( tEntity, strClassname, bReload )
-  if ( Get( strClassname ) ~= nil and bReload ~= true ) then
+function register( tEntity, strClassname, bReload )
+  if ( get( strClassname ) ~= nil and bReload ~= true ) then
     return
   end
   tEntities[ strClassname ] = tEntity

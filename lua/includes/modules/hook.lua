@@ -8,10 +8,11 @@ local pairs = pairs
 local Warning = dbg.Warning
 local tostring = tostring
 local pcall = pcall
+local unpack = unpack
 
 module( "hook" )
 
-local bError, r1, r2, r3, r4, r5, r6, r7, r8
+local tReturns = {}
 local tHooks = {}
 
 -------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ local tHooks = {}
 --			pFn - pointer to function
 -- Output :
 -------------------------------------------------------------------------------
-function Add( strEventName, strHookName, pFn )
+function add( strEventName, strHookName, pFn )
   tHooks[ strEventName ] = tHooks[ strEventName ] or {}
   tHooks[ strEventName ][ strHookName ] = pFn
 end
@@ -32,7 +33,7 @@ end
 --			tGamemode - Table of the current gamemode
 -- Output :
 -------------------------------------------------------------------------------
-function Call( strEventName, tGamemode, ... )
+function call( strEventName, tGamemode, ... )
   local tHooks = tHooks[ strEventName ]
   if ( tHooks ~= nil ) then
     for k, v in pairs( tHooks ) do
@@ -41,12 +42,12 @@ function Call( strEventName, tGamemode, ... )
 		tHooks[ k ] = nil
 		break
 	  else
-	    bError, r1, r2, r3, r4, r5, r6, r7, r8 = pcall( v, ... )
-		if ( bError == false ) then
-		  Warning( "Hook '" .. tostring( k ) .. "' (" .. tostring( strEventName ) .. ") Failed: " .. tostring( r1 ) .. "\n" )
+	    tReturns = { pcall( v, ... ) }
+		if ( tReturns[ 1 ] == false ) then
+		  Warning( "Hook '" .. tostring( k ) .. "' (" .. tostring( strEventName ) .. ") Failed: " .. tostring( tReturns[ 2 ] ) .. "\n" )
 		  tHooks[ k ] = nil
-		elseif ( r1 ~= nil ) then
-		  return r1, r2, r3, r4, r5, r6, r7, r8
+		elseif ( tReturns[ 2 ] ~= nil ) then
+		  return unpack( tReturns, 2 )
 		end
 	  end
 	end
@@ -56,13 +57,13 @@ function Call( strEventName, tGamemode, ... )
 	if ( fn == nil ) then
 	  return nil
 	else
-	  bError, r1, r2, r3, r4, r5, r6, r7, r8 = pcall( fn, tGamemode, ... )
-	  if ( bError == false ) then
-	    Warning( "ERROR: GAMEMODE: '" .. tostring( strEventName ) .. "' Failed: " .. tostring( r1 ) .. "\n" )
+	  tReturns = { pcall( fn, tGamemode, ... ) }
+	  if ( tReturns[ 1 ] == false ) then
+	    Warning( "ERROR: GAMEMODE: '" .. tostring( strEventName ) .. "' Failed: " .. tostring( tReturns[ 2 ] ) .. "\n" )
 		fn = nil
 		return nil
 	  end
-      return r1, r2, r3, r4, r5, r6, r7, r8
+      return unpack( tReturns, 2 )
 	end
   end
 end
@@ -73,7 +74,7 @@ end
 -- Input  : strEventName - Name of the internal GameRules method
 -- Output : table
 -------------------------------------------------------------------------------
-function GetHooks( strEventName )
+function gethooks( strEventName )
   if ( strEventName ) then
     return tHooks[ strEventName ]
   end
@@ -86,7 +87,7 @@ end
 --			strHookName - Name of the hook
 -- Output :
 -------------------------------------------------------------------------------
-function Remove( strEventName, strHookName )
+function remove( strEventName, strHookName )
   if ( tHooks[ strEventName ][ strHookName ] ) then
     tHooks[ strEventName ][ strHookName ] = nil
   end

@@ -21,7 +21,7 @@ local tAddons = {}
 --			if the addon overrides files, essentially
 -- Output : boolean
 -------------------------------------------------------------------------------
-function Add( strAddonName, addType )
+function add( strAddonName, addType )
   for _, addon in pairs( tAddons ) do
     if ( addon:lower() == strAddonName:lower() ) then
 	  Warning( "WARNING: Addon \"" .. addon .. "\"is already added!\n" )
@@ -43,7 +43,7 @@ end
 -- Input  :
 -- Output : table
 -------------------------------------------------------------------------------
-function GetAddons()
+function getaddons()
   return tAddons
 end
 
@@ -52,7 +52,7 @@ end
 -- Input  : strAddonName - Name of the addon folder
 -- Output : boolean
 -------------------------------------------------------------------------------
-function Remove( strAddonName )
+function remove( strAddonName )
   local bIsAddon = false
   for _, addon in pairs( tAddons ) do
     if ( addon:lower() == strAddonName:lower() ) then

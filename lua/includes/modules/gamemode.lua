@@ -12,6 +12,7 @@ local hook = hook
 local table = table
 local print = print
 local _BASE_GAMEMODE = _BASE_GAMEMODE
+local _G = _G
 
 module( "gamemode" )
 
@@ -22,11 +23,11 @@ local tGamemodes = {}
 -- Input  : strEventName - Name of the internal GameRules method
 -- Output :
 -------------------------------------------------------------------------------
-function Call( strEventName, ... )
-  if ( GAMEMODE and GAMEMODE[ strEventName ] == nil ) then
+function call( strEventName, ... )
+  if ( _G._GAMEMODE and _G._GAMEMODE[ strEventName ] == nil ) then
     return false
   end
-  return hook.Call( strEventName, GAMEMODE, ... )
+  return hook.call( strEventName, _G._GAMEMODE, ... )
 end
 
 -------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ end
 -- Input  : strName - Name of the gamemode
 -- Output : table
 -------------------------------------------------------------------------------
-function Get( strName )
+function get( strName )
   return tGamemodes[ strName ]
 end
 
@@ -45,12 +46,12 @@ end
 --			strBaseClass - Name of the base class
 -- Output :
 -------------------------------------------------------------------------------
-function Register( tGamemode, strName, strBaseClass )
-  if ( Get( strName ) ~= nil and GAMEMODE ~= nil ) then
-    tGamemode = table.inherit( tGamemode, GAMEMODE )
+function register( tGamemode, strName, strBaseClass )
+  if ( get( strName ) ~= nil and _G._GAMEMODE ~= nil ) then
+    tGamemode = table.inherit( tGamemode, _G._GAMEMODE )
   end
   if ( strName ~= _BASE_GAMEMODE ) then
-	tGamemode = table.inherit( tGamemode, Get( strBaseClass ) )
+    tGamemode = table.inherit( tGamemode, get( strBaseClass ) )
   end
   tGamemodes[ strName ] = tGamemode
 end
