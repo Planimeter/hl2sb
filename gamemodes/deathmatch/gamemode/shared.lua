@@ -19,7 +19,6 @@ function GM:Shutdown()
   -- While one might wonder why Shutdown isn't implemented at the C level as
   -- well, it's simply because it would be called within LevelShutdown, causing
   -- it's implementation to be redundant.
-  gamemode.Call( "Shutdown" )
 end
 
 function GM:CalcPlayerView( pPlayer, eyeOrigin, eyeAngles, fov )

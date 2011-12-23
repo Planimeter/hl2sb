@@ -17,8 +17,8 @@ local tAddons = {}
 -------------------------------------------------------------------------------
 -- Purpose: Adds an addon to the filesystem
 -- Input  : strAddonName - Name of the folder within ..\..\..\addons
---			addType - Enum corresponding to SearchPathAdd_t, determines
---			if the addon overrides files, essentially
+--		      addType - Enum corresponding to SearchPathAdd_t, determines
+--          if the addon overrides files, essentially
 -- Output : boolean
 -------------------------------------------------------------------------------
 function add( strAddonName, addType )
@@ -45,6 +45,16 @@ end
 -------------------------------------------------------------------------------
 function getaddons()
   return tAddons
+end
+
+-------------------------------------------------------------------------------
+-- Purpose: Passes loaded addon information from the engine to Lua
+-- Input  : strAddonName - Name of the addon folder
+-- Output :
+-------------------------------------------------------------------------------
+function load( strAddonName )
+  table.insert( tAddons, strAddonName )
+  table.sort( tAddons )
 end
 
 -------------------------------------------------------------------------------
