@@ -7,7 +7,7 @@
 local sin = math.sin
 local curtime = gpGlobals.curtime
 
-hook.Add( "CalcPlayerView", "CalcPlayerView", function( pPlayer, eyeOrigin, eyeAngles, fov )
+hook.add( "CalcPlayerView", "CalcPlayerView", function( pPlayer, eyeOrigin, eyeAngles, fov )
   -- Give a subtle breathing effect.
   eyeAngles = eyeAngles + QAngle( sin( curtime() ) / 2, 0, 0 )
 
