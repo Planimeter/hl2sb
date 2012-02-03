@@ -40,31 +40,33 @@ end
 		return false;
 	end
 
-	local nSide = pPlayer.m_Local.m_nStepside;
+	local nSide = pPlayer:GetPlayerLocalData().m_nStepside;
 	local stepSoundName = nSide ~= 0 and psurface.sounds.stepleft or psurface.sounds.stepright;
 	if ( not stepSoundName ) then
 		return false;
 	end
 
-	pPlayer.m_Local.m_nStepside = not nSide;
+	pPlayer:SetPlayerLocalData( "m_nStepside", nSide == 0 and 1 or 0 );
 
 	local params;
 
 	assert( nSide == 0 or nSide == 1 );
 
-	if ( pPlayer.m_StepSoundCache[ nSide ].m_usSoundNameIndex == stepSoundName ) then
-		params = pPlayer.m_StepSoundCache[ nSide ].m_SoundParameters;
+	if ( pPlayer:GetStepSoundCache()[ nSide ].m_usSoundNameIndex == stepSoundName ) then
+		params = pPlayer:GetStepSoundCache()[ nSide ].m_SoundParameters;
 	else
 		local physprops = MoveHelper():GetSurfaceProps();
 		local pSoundName = physprops:GetString( stepSoundName );
-		if ( not _R.CBaseEntity.GetParametersForSound( pSoundName, params, NULL ) ) then
+		local b
+		b, params = _R.CBaseEntity.GetParametersForSound( pSoundName )
+		if ( not b ) then
 			return false;
 		end
 
 		-- Only cache if there's one option.  Otherwise we'd never here any other sounds
 		if ( params.count == 1 ) then
-			pPlayer.m_StepSoundCache[ nSide ].m_usSoundNameIndex = stepSoundName;
-			pPlayer.m_StepSoundCache[ nSide ].m_SoundParameters = params;
+			pPlayer.SetStepSoundCache( nSide, "m_usSoundNameIndex", stepSoundName );
+			pPlayer.SetStepSoundCache( nSide, "m_SoundParameters", params );
 		end
 	end
 
@@ -88,6 +90,7 @@ end
 	ep.m_pOrigin = vecOrigin;
 
 	pPlayer:EmitSound( filter, pPlayer:entindex(), ep );
+	return false
 end
 
 function GM:WeaponShouldRespawn( pWeapon )
