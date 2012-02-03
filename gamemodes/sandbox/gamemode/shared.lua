@@ -24,6 +24,12 @@ function GM:FlWeaponTryRespawn( pWeapon )
   return 0
 end
 
+function GM:PlayerPlayStepSound( pPlayer, vecOrigin, psurface, fvol, force )
+	setmetatable( pPlayer, _R.CBasePlayer )
+	pPlayer:PlayStepSound( vecOrigin, psurface, fvol, force )
+	return false
+end
+
 function GM:WeaponShouldRespawn( pWeapon )
   return 2 -- GR_WEAPON_RESPAWN_NO
 end
