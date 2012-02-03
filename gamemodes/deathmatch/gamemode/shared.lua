@@ -76,6 +76,9 @@ end
 function GM:PlayerKilled( pVictim, info )
 end
 
+function GM:PlayerPlayFootStep( pPlayer, vecOrigin, fvol, force )
+end
+
 function GM:PlayerRelationship( pPlayer, pTarget )
 end
 
