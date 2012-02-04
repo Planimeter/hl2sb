@@ -81,7 +81,7 @@ if not _CLIENT then
 end
 
 	local ep = {};
-	ep.m_nChannel = CHAN_BODY;
+	ep.m_nChannel = 4; -- CHAN_BODY
 	ep.m_pSoundName = params.soundname;
 	ep.m_flVolume = fvol;
 	ep.m_SoundLevel = params.soundlevel;
