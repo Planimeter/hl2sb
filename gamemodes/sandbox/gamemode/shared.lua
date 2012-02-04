@@ -65,8 +65,8 @@ end
 
 		-- Only cache if there's one option.  Otherwise we'd never here any other sounds
 		if ( params.count == 1 ) then
-			pPlayer.SetStepSoundCache( nSide, "m_usSoundNameIndex", stepSoundName );
-			pPlayer.SetStepSoundCache( nSide, "m_SoundParameters", params );
+			pPlayer:SetStepSoundCache( nSide, "m_usSoundNameIndex", stepSoundName );
+			pPlayer:SetStepSoundCache( nSide, "m_SoundParameters", params );
 		end
 	end
 
