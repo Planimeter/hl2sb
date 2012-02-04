@@ -89,7 +89,7 @@ end
 	ep.m_nPitch = params.pitch;
 	ep.m_pOrigin = vecOrigin;
 
-	pPlayer:EmitSound( filter, pPlayer:entindex(), ep );
+	_R.CBaseEntity.EmitSound( filter, pPlayer:entindex(), ep );
 	return false
 end
 
