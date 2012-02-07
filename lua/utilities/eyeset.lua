@@ -10,7 +10,7 @@ local EYE_PRESET_FOV = 90
 
 local r_eyeset = ConVar( "r_eyeset", "0", FCVAR_CLIENTDLL )
 
-hook.Add( "CalcPlayerView", "SetPlayerView", function( pPlayer, eyeOrigin, eyeAngles, fov )
+hook.add( "CalcPlayerView", "SetPlayerView", function( pPlayer, eyeOrigin, eyeAngles, fov )
   if ( r_eyeset:GetBool() == true ) then
     -- FIXME: eyeOrigin isn't getting set (overriden) correctly.
     eyeOrigin = EYE_PRESET_ORIGIN
