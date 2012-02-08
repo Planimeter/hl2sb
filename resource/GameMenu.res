@@ -63,6 +63,11 @@
 	}
 	"11"
 	{
+		"label" "#GameUI_GameMenu_Content"
+		"command" "engine OpenContentDialog"
+	}
+	"12"
+	{
 		"label" "#GameUI_GameMenu_Quit"
 		"command" "Quit"
 	}
