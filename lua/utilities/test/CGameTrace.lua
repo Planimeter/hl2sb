@@ -4,6 +4,9 @@
 --
 --===========================================================================--
 
+local MASK_SHOT = 1174421507
+local COLLISION_GROUP_NONE = 0
+
 local pPlayer = UTIL.PlayerByIndex( 1 )
 
 if ( pPlayer == NULL ) then
@@ -18,5 +21,6 @@ print( tr )
 local pEntity = tr.m_pEnt
 print( pEntity )
 if ( pEntity ~= NULL ) then
+  print( pEntity:GetModelName() )
   pEntity:SetRenderColor( 255, 0, 0, 255 )
 end
