@@ -16,4 +16,5 @@ end
 
 function GM:GiveDefaultItems( pPlayer )
   pPlayer:GiveNamedItem( "weapon_physgun" )
+  self.BaseClass.GiveDefaultItems( pPlayer )
 end

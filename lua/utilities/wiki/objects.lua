@@ -19,9 +19,12 @@ for k, v in pairs( _R ) do
 end
 
 table.sort( tMetatables )
+local file = assert( io.open( "objects.txt", "wb" ) )
 for i, metatable in pairs( tMetatables ) do
   if ( i == #tMetatables ) then
     br = ""
   end
-  print( "*[[" .. metatable .. "]]" .. br )
+  -- print( "*[[" .. metatable .. "]]" .. br )
+  file:write( "*[[" .. metatable .. "]]" .. br .."\r\n" )
 end
+assert( io.close( file ) )

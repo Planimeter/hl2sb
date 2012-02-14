@@ -4,21 +4,37 @@
 --
 --===========================================================================--
 
--- Andrew; set your desired object here, let the script do the rest.
-local OBJECT = "FILE*"
-
-local fields = {}
+local tMetatables = {}
 local br = "<br>"
 
-for field, v in pairs( _R[ OBJECT ] ) do
-  table.insert( fields, field )
+for k, v in pairs( _R ) do
+  -- Only print tables, everything else in _R should be a ref count
+  if ( type( k ) ~= "number" and type( v ) == "table" ) then
+    if ( v.__index ~= nil ) then
+      table.insert( tMetatables, k )
+    end
+  end
 end
 
-table.sort( fields )
+for _, OBJECT in pairs( tMetatables ) do
+  if ( OBJECT ~= "FILE*" ) then
+    local fields = {}
+    local br = "<br>"
 
-for i, field in pairs( fields ) do
-  if ( i == #fields ) then
-    br = ""
+    for field, _ in pairs( _R[ OBJECT ] ) do
+      table.insert( fields, field )
+    end
+
+    table.sort( fields )
+
+    local file = assert( io.open( OBJECT .. ".txt", "wb" ) )
+    for i, field in pairs( fields ) do
+      if ( i == #fields ) then
+        br = ""
+      end
+      -- print( "*[[" .. OBJECT .. "." .. field .. "]]" .. br )
+      file:write( "*[[" .. OBJECT .. "." .. field .. "]]" .. br .. "\r\n" )
+    end
+    assert( io.close( file ) )
   end
-  print( "*[[" .. OBJECT .. "." .. field .. "]]" .. br )
 end

@@ -6,6 +6,10 @@
 
 include( "shared.lua" )
 
+local PLAYER_SOUNDS_CITIZEN = 0
+local PLAYER_SOUNDS_COMBINESOLDIER = 1
+local PLAYER_SOUNDS_METROPOLICE = 2
+
 function GM:AddLevelDesignerPlacedObject( pEntity )
 end
 
@@ -61,6 +65,34 @@ function GM:FShouldSwitchWeapon( pPlayer, pWeapon )
 end
 
 function GM:GiveDefaultItems( pPlayer )
+	self:EquipSuit();
+
+	_R.CBasePlayer.GiveAmmo( self, 255,	"Pistol");
+	_R.CBasePlayer.GiveAmmo( self, 45,	"SMG1");
+	_R.CBasePlayer.GiveAmmo( self, 1,	"grenade" );
+	_R.CBasePlayer.GiveAmmo( self, 6,	"Buckshot");
+	_R.CBasePlayer.GiveAmmo( self, 6,	"357" );
+
+	if ( self:GetPlayerModelType() == PLAYER_SOUNDS_METROPOLICE or self:GetPlayerModelType() == PLAYER_SOUNDS_COMBINESOLDIER ) then
+		self:GiveNamedItem( "weapon_stunstick" );
+	elseif ( self:GetPlayerModelType() == PLAYER_SOUNDS_CITIZEN ) then
+		self:GiveNamedItem( "weapon_crowbar" );
+	end
+	
+	self:GiveNamedItem( "weapon_pistol" );
+	self:GiveNamedItem( "weapon_smg1" );
+	self:GiveNamedItem( "weapon_frag" );
+	self:GiveNamedItem( "weapon_physcannon" );
+
+	local szDefaultWeaponName = engine.GetClientConVarValue( engine.IndexOfEdict( self ), "cl_defaultweapon" );
+
+	local pDefaultWeapon = self:Weapon_OwnsThisType( szDefaultWeaponName );
+
+	if ( pDefaultWeapon ) then
+		self:Weapon_Switch( pDefaultWeapon );
+	else
+		self:Weapon_Switch( self:Weapon_OwnsThisType( "weapon_physcannon" ) );
+	end
 end
 
 function GM:Host_Say( pPlayer, p, teamonly )

@@ -18,9 +18,12 @@ end
 table.sort( globals )
 
 -- Andrew; just remove any shared globals and put them in Shared:Globals
+local file = assert( io.open( "globals.txt", "wb" ) )
 for i, global in pairs( globals ) do
   if ( i == #globals ) then
     br = ""
   end
-  print( "*[[_G." .. global .. "|" .. global .. "]]" .. br )
+  -- print( "*[[_G." .. global .. "|" .. global .. "]]" .. br )
+  file:write( "*[[_G." .. global .. "|" .. global .. "]]" .. br .. "\r\n" )
 end
+assert( io.close( file ) )
