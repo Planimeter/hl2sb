@@ -33,7 +33,6 @@ local blacklist = {
 
 local bBlacklisted = false
 local libraries = {}
-local br = "<br>"
 
 for library, t in pairs( _G ) do
   for _, v in pairs( blacklist ) do

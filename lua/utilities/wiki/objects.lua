@@ -7,7 +7,6 @@
 -- Test to see if every metatable is actually a metatable, keep in mind that
 -- this can be faked in two shakes of a lamb's tail
 local tMetatables = {}
-local br = "<br>"
 
 for k, v in pairs( _R ) do
   -- Only print tables, everything else in _R should be a ref count

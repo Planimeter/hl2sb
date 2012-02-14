@@ -5,7 +5,6 @@
 --===========================================================================--
 
 local tMetatables = {}
-local br = "<br>"
 
 for k, v in pairs( _R ) do
   -- Only print tables, everything else in _R should be a ref count
@@ -19,7 +18,6 @@ end
 for _, OBJECT in pairs( tMetatables ) do
   if ( OBJECT ~= "FILE*" ) then
     local fields = {}
-    local br = "<br>"
 
     for field, _ in pairs( _R[ OBJECT ] ) do
       table.insert( fields, field )
@@ -32,8 +30,8 @@ for _, OBJECT in pairs( tMetatables ) do
       if ( i == #fields ) then
         br = ""
       end
-      -- print( "*[[" .. OBJECT .. "." .. field .. "]]" .. br )
-      file:write( "*[[" .. OBJECT .. "." .. field .. "]]" .. br .. "\r\n" )
+      -- print( "*[[" .. OBJECT .. "." .. field .. "]]" )
+      file:write( "*[[" .. OBJECT .. "." .. field .. "]]" .. "\r\n" )
     end
     assert( io.close( file ) )
   end

@@ -5,7 +5,6 @@
 --===========================================================================--
 
 local enumerations = {}
-local br = "<br>"
 
 for enumeration, n in pairs( _G ) do
   if ( type( n ) == "number" ) then
@@ -20,5 +19,5 @@ for i, enumeration in pairs( enumerations ) do
   if ( i == #enumerations ) then
     br = ""
   end
-  print( "*[[_G." .. enumeration .. "|" .. enumeration .. "]]" .. br )
+  print( "*[[_G." .. enumeration .. "|" .. enumeration .. "]]" )
 end

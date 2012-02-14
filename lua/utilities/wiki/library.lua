@@ -11,7 +11,6 @@ local LIBRARY = "coroutine"
 local tLib = require( LIBRARY )
 
 local fields = {}
-local br = "<br>"
 
 for field, v in pairs( tLib ) do
   table.insert( fields, field )
@@ -23,5 +22,5 @@ for i, field in pairs( fields ) do
   if ( i == #fields ) then
     br = ""
   end
-  print( "*[[" .. LIBRARY .. "." .. field .. "]]" .. br )
+  print( "*[[" .. LIBRARY .. "." .. field .. "]]" )
 end

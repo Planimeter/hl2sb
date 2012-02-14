@@ -5,7 +5,6 @@
 --===========================================================================--
 
 local globals = {}
-local br = "<br>"
 
 -- Andrew; dump the globals, purge the enumerations, we'll deal with that in a
 -- separate article.
