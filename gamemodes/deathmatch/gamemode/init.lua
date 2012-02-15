@@ -88,7 +88,7 @@ function GM:GiveDefaultItems( pPlayer )
 
 	local pDefaultWeapon = self:Weapon_OwnsThisType( szDefaultWeaponName );
 
-	if ( pDefaultWeapon ) then
+	if ( pDefaultWeapon ~= NULL ) then
 		self:Weapon_Switch( pDefaultWeapon );
 	else
 		self:Weapon_Switch( self:Weapon_OwnsThisType( "weapon_physcannon" ) );
