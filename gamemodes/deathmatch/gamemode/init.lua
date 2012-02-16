@@ -65,33 +65,33 @@ function GM:FShouldSwitchWeapon( pPlayer, pWeapon )
 end
 
 function GM:GiveDefaultItems( pPlayer )
-	self:EquipSuit();
+	pPlayer:EquipSuit();
 
-	_R.CBasePlayer.GiveAmmo( self, 255,	"Pistol");
-	_R.CBasePlayer.GiveAmmo( self, 45,	"SMG1");
-	_R.CBasePlayer.GiveAmmo( self, 1,	"grenade" );
-	_R.CBasePlayer.GiveAmmo( self, 6,	"Buckshot");
-	_R.CBasePlayer.GiveAmmo( self, 6,	"357" );
+	_R.CBasePlayer.GiveAmmo( pPlayer, 255,	"Pistol");
+	_R.CBasePlayer.GiveAmmo( pPlayer, 45,	"SMG1");
+	_R.CBasePlayer.GiveAmmo( pPlayer, 1,	"grenade" );
+	_R.CBasePlayer.GiveAmmo( pPlayer, 6,	"Buckshot");
+	_R.CBasePlayer.GiveAmmo( pPlayer, 6,	"357" );
 
-	if ( self:GetPlayerModelType() == PLAYER_SOUNDS_METROPOLICE or self:GetPlayerModelType() == PLAYER_SOUNDS_COMBINESOLDIER ) then
-		self:GiveNamedItem( "weapon_stunstick" );
-	elseif ( self:GetPlayerModelType() == PLAYER_SOUNDS_CITIZEN ) then
-		self:GiveNamedItem( "weapon_crowbar" );
+	if ( pPlayer:GetPlayerModelType() == PLAYER_SOUNDS_METROPOLICE or pPlayer:GetPlayerModelType() == PLAYER_SOUNDS_COMBINESOLDIER ) then
+		pPlayer:GiveNamedItem( "weapon_stunstick" );
+	elseif ( pPlayer:GetPlayerModelType() == PLAYER_SOUNDS_CITIZEN ) then
+		pPlayer:GiveNamedItem( "weapon_crowbar" );
 	end
 	
-	self:GiveNamedItem( "weapon_pistol" );
-	self:GiveNamedItem( "weapon_smg1" );
-	self:GiveNamedItem( "weapon_frag" );
-	self:GiveNamedItem( "weapon_physcannon" );
+	pPlayer:GiveNamedItem( "weapon_pistol" );
+	pPlayer:GiveNamedItem( "weapon_smg1" );
+	pPlayer:GiveNamedItem( "weapon_frag" );
+	pPlayer:GiveNamedItem( "weapon_physcannon" );
 
-	local szDefaultWeaponName = engine.GetClientConVarValue( engine.IndexOfEdict( self ), "cl_defaultweapon" );
+	local szDefaultWeaponName = engine.GetClientConVarValue( engine.IndexOfEdict( pPlayer ), "cl_defaultweapon" );
 
-	local pDefaultWeapon = self:Weapon_OwnsThisType( szDefaultWeaponName );
+	local pDefaultWeapon = pPlayer:Weapon_OwnsThisType( szDefaultWeaponName );
 
 	if ( pDefaultWeapon ~= NULL ) then
-		self:Weapon_Switch( pDefaultWeapon );
+		pPlayer:Weapon_Switch( pDefaultWeapon );
 	else
-		self:Weapon_Switch( self:Weapon_OwnsThisType( "weapon_physcannon" ) );
+		pPlayer:Weapon_Switch( pPlayer:Weapon_OwnsThisType( "weapon_physcannon" ) );
 	end
 end
 
