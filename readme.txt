@@ -1,5 +1,7 @@
 Half-Life 2: Sandbox
 Andrew McWatters
+Henry Tran
+Matthew
 
 
 
@@ -19,4 +21,4 @@ ARGG is used by Half-Life 2: Sandbox to implement rotational functionality for t
 
 Open Steamworks
 
-Open Steamworks is used in Half-Life 2: Sandbox for mounting additional game content through Steam's abstraction layer rather than the game engine's filesystem class, which prevents engine error crashes.
+Open Steamworks is used in Half-Life 2: Sandbox for mounting additional game content through Steam's abstraction layer rather than the game engine's filesystem class, which prevents non-fatal engine errors.
