@@ -14,7 +14,6 @@ function GM:ItemShouldRespawn( pItem )
   return 6 -- GR_ITEM_RESPAWN_NO
 end
 
-function GM:GiveDefaultItems( pPlayer )
-	--Andrew; lame, but in HL2MP, we're always given the suit
-	pPlayer:RemoveSuit()
+function GM:PlayerSpawn( pPlayer )
+	return false
 end
