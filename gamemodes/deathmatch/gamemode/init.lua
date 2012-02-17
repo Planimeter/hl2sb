@@ -129,6 +129,7 @@ function GM:PlayerInitialSpawn( pPlayer )
 end
 
 function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
+	return false
 end
 
 function GM:PlayerSpawn( pPlayer )

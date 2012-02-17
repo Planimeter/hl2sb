@@ -17,6 +17,9 @@ function GM:ItemShouldRespawn( hItem )
   return 6 -- GR_ITEM_RESPAWN_NO
 end
 
+function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
+end
+
 function GM:PlayerSpawn( hPlayer )
 	return false
 end
