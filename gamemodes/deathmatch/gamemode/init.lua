@@ -113,6 +113,9 @@ end
 function GM:PlayerCanHearChat( pListener, pSpeaker )
 end
 
+function GM:PlayerCanPickupObject( pObject, massLimit, sizeLimit )
+end
+
 function GM:PlayerDeathSound( info )
 end
 
@@ -123,6 +126,9 @@ function GM:PlayerEntSelectSpawnPoint( pHL2MPPlayer )
 end
 
 function GM:PlayerInitialSpawn( pPlayer )
+end
+
+function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
 end
 
 function GM:PlayerSpawn( pPlayer )
