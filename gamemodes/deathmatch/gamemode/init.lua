@@ -119,6 +119,9 @@ end
 function GM:PlayerDeathThink( pPlayer )
 end
 
+function GM:PlayerEntSelectSpawnPoint( pHL2MPPlayer )
+end
+
 function GM:PlayerInitialSpawn( pPlayer )
 end
 
