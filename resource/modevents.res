@@ -31,6 +31,7 @@
 	{
 		"userid"	"short"   	// user ID who died				
 		"attacker"	"short"	 	// user ID who killed
+		"attackername"	"string"	 	// attacker class name who killed
 		"weapon"	"string" 	// weapon name killed used 
 	}
 }
