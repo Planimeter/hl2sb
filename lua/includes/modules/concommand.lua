@@ -28,7 +28,7 @@ function Create( pName, callback, pHelpString, flags )
 end
 
 -------------------------------------------------------------------------------
--- Purpose: Called by the engine to dispatch a ConCommand
+-- Purpose: Called by the game to dispatch a ConCommand
 -- Input  : pPlayer - Player who ran the ConCommand
 --			pCmd - Name of the ConCommand
 --			ArgS - All args that occur after the 0th arg, in string form
