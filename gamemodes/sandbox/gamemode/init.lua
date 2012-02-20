@@ -16,7 +16,7 @@ end
 
 function GM:GiveDefaultItems( pPlayer )
   pPlayer:GiveNamedItem( "weapon_physgun" )
-  self.BaseClass.GiveDefaultItems( self, pPlayer )
+  self.BaseClass:GiveDefaultItems( pPlayer )
 end
 
 function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
