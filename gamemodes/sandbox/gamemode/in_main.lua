@@ -22,4 +22,4 @@ local function IN_BuildUp( pPlayer, pCmd, args )
 	print( "\t" .. args )
 end
 
-concommand.Create( "-build", IN_BUILD, nil, 2^3 )
+concommand.Create( "-build", IN_BuildUp, nil, 2^3 )
