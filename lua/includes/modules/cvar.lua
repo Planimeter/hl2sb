@@ -27,7 +27,7 @@ function AddChangeCallback( strConVarName, strCallbackName, pFn )
 end
 
 -------------------------------------------------------------------------------
--- Purpose: Called by the engine to call global change callbacks
+-- Purpose: Called by the game to call global change callbacks
 -- Input  : var - ConVar that has changed
 --			pOldString - String value before var changed
 --			flOldValue - Float value before var changed
@@ -72,7 +72,7 @@ end
 -- Output :
 -------------------------------------------------------------------------------
 function RemoveChangeCallback( strConVarName, strCallbackName )
-  if ( tHooks[ strConVarName ][ strCallbackName ] ) then
-    tHooks[ strConVarName ][ strCallbackName ] = nil
+  if ( tCallbacks[ strConVarName ][ strCallbackName ] ) then
+    tCallbacks[ strConVarName ][ strCallbackName ] = nil
   end
 end

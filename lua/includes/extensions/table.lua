@@ -32,6 +32,15 @@ function table.copy( t, tRecursive )
   return __copy
 end
 
+function table.hasvalue( t, val )
+  for _, v in pairs( t ) do
+    if ( v == val ) then
+    return true
+  end
+  end
+  return false
+end
+
 function table.inherit( t, BaseClass )
   for k, v in pairs( BaseClass ) do
     if ( t[ k ] == nil ) then
@@ -42,11 +51,12 @@ function table.inherit( t, BaseClass )
   return t
 end
 
-function table.hasvalue( t, val )
-  for _, v in pairs( t ) do
-    if ( v == val ) then
-	  return true
+function table.merge( dest, src )
+  for k, v in pairs( src ) do
+    if ( type( dest[ k ] ) == "table" and type( v ) == "table" ) then
+      table.merge( dest[ k ], v )
+    else
+      dest[ k ] = v
+    end
 	end
-  end
-  return false
 end
