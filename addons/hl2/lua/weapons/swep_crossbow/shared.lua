@@ -72,6 +72,20 @@ end
 -- SWeaponCrossbow
 -------------------------------------------------------------------------------
 
+-- Various states for the crossbow's charger
+SWEP.ChargerState_t =
+{
+	CHARGER_STATE_START_LOAD = 0,
+	CHARGER_STATE_START_CHARGE = 1,
+	CHARGER_STATE_READY = 2,
+	CHARGER_STATE_DISCHARGE = 3,
+	CHARGER_STATE_OFF = 4,
+};
+
+if not _CLIENT then
+SWEP.m_hChargerSprite = NULL;
+end
+
 SWEP.m_acttable = 
 {
 	{ 1048, 1026, false },
@@ -193,7 +207,7 @@ function SWEP:ItemPostFrame()
 	self:CheckZoomToggle();
 
 	if ( self.m_bMustReload and self:HasWeaponIdleTimeElapsed() ) then
-		--self:Reload();
+		self:Reload();
 	end
 
 	self.BaseClass:ItemPostFrame();
@@ -257,7 +271,7 @@ end
 	self.m_flNextSecondaryAttack	= gpGlobals.curtime() + 0.75;
 
 	self:DoLoadEffect();
-	self:SetChargerState( CHARGER_STATE_DISCHARGE );
+	self:SetChargerState( self.ChargerState_t.CHARGER_STATE_DISCHARGE );
 end
 
 -------------------------------------------------------------------------------
@@ -284,7 +298,7 @@ function SWEP:Holster( pSwitchingTo )
 		self:ToggleZoom();
 	end
 
-	self:SetChargerState( CHARGER_STATE_OFF );
+	self:SetChargerState( self.ChargerState_t.CHARGER_STATE_OFF );
 
 	return self.BaseClass:Holster( pSwitchingTo );
 end
@@ -326,6 +340,8 @@ if not _CLIENT then
 		return;
 	end
 
+	--FIXME: add CSprite object!!
+	--[[
 	self.m_hChargerSprite = _R.CSprite.SpriteCreate( CROSSBOW_GLOW_SPRITE, self:GetAbsOrigin(), false );
 
 	if ( self.m_hChargerSprite ) then
@@ -335,6 +351,7 @@ if not _CLIENT then
 		self.m_hChargerSprite:SetScale( 0.1 );
 		self.m_hChargerSprite:TurnOff();
 	end
+	]]
 end
 end
 
@@ -432,14 +449,14 @@ function SWEP:SetChargerState( state )
 
 	self.m_nChargeState = state;
 
-	if ( self.m_nChargeState == CHARGER_STATE_START_LOAD ) then
+	if ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_START_LOAD ) then
 	
 		self:WeaponSound( SPECIAL1 );
 		
 		-- Shoot some sparks and draw a beam between the two outer points
 		self:DoLoadEffect();
 		
-	elseif ( self.m_nChargeState == CHARGER_STATE_OFF ) then
+	elseif ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_OFF ) then
 		self:SetSkin( BOLT_SKIN_NORMAL );
 
 if not _CLIENT then
@@ -452,7 +469,7 @@ if not _CLIENT then
 end
 	end
 if not _CLIENT then
-	if ( self.m_nChargeState == CHARGER_STATE_START_CHARGE ) then
+	if ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_START_CHARGE ) then
 		if ( m_hChargerSprite == NULL ) then
 			return;
 		end
@@ -461,7 +478,7 @@ if not _CLIENT then
 		self.m_hChargerSprite:SetScale( 0.025, 0.5 );
 		self.m_hChargerSprite:TurnOn();
 
-	elseif ( self.m_nChargeState == CHARGER_STATE_READY ) then
+	elseif ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_READY ) then
 		-- Get fully charged
 		if ( self.m_hChargerSprite == NULL ) then
 			return;
@@ -471,7 +488,7 @@ if not _CLIENT then
 		self.m_hChargerSprite:SetScale( 0.1, 0.5 );
 		self.m_hChargerSprite:TurnOn();
 
-	elseif ( self.m_nChargeState == CHARGER_STATE_DISCHARGE ) then
+	elseif ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_DISCHARGE ) then
 		self:SetSkin( BOLT_SKIN_NORMAL );
 		
 		if ( self.m_hChargerSprite == NULL ) then
@@ -493,13 +510,13 @@ if not _CLIENT then
 -------------------------------------------------------------------------------
 function SWEP:Operator_HandleAnimEvent( pEvent, pOperator )
 	if ( pEvent.event == EVENT_WEAPON_THROW ) then
-		self:SetChargerState( CHARGER_STATE_START_LOAD );
+		self:SetChargerState( self.ChargerState_t.CHARGER_STATE_START_LOAD );
 
 	elseif ( pEvent.event == EVENT_WEAPON_THROW2 ) then
-		self:SetChargerState( CHARGER_STATE_START_CHARGE );
+		self:SetChargerState( self.ChargerState_t.CHARGER_STATE_START_CHARGE );
 	
 	elseif ( pEvent.event == EVENT_WEAPON_THROW3 ) then
-		self:SetChargerState( CHARGER_STATE_READY );
+		self:SetChargerState( self.ChargerState_t.CHARGER_STATE_READY );
 
 	else
 		self.BaseClass:Operator_HandleAnimEvent( pEvent, pOperator );
