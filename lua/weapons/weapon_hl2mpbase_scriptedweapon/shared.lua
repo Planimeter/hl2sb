@@ -139,13 +139,16 @@ end
 function SWEP:CanHolster()
 end
 
-function SWEP:Holster()
-end
-
 function SWEP:Deploy()
 end
 
+function SWEP:Holster( pSwitchingTo )
+end
+
 function SWEP:ItemPostFrame()
+end
+
+function SWEP:ItemBusyFrame()
 end
 
 function SWEP:DoImpactEffect()

@@ -93,7 +93,7 @@ SWEP.m_acttable =
 };
 
 -------------------------------------------------------------------------------
--- Purpose: Constructor
+-- Purpose: 
 -------------------------------------------------------------------------------
 function SWEP:Initialize()
 	self.m_bReloadsSingly	= true;
@@ -137,7 +137,7 @@ function SWEP:PrimaryAttack()
 	-- Signal a reload
 	self.m_bMustReload = true;
 
-	self:SetWeaponIdleTime( gpGlobals.curtime() + self:SequenceDuration( ACT_VM_PRIMARYATTACK ) );
+	self:SetWeaponIdleTime( gpGlobals.curtime() + self:SequenceDuration( 180 ) );
 end
 
 -------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ end
 -- Output : Returns true on success, false on failure.
 -------------------------------------------------------------------------------
 function SWEP:Reload()
-	if ( self.BaseClass:Reload() ) then
+	if ( _R.CBaseCombatWeapon.Reload( self ) ) then
 		self.m_bMustReload = false;
 		return true;
 	end
