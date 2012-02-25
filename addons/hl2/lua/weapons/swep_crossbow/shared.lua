@@ -53,9 +53,6 @@ local BoltCreate
 
 if not _CLIENT then
 
-local sk_plr_dmg_crossbow = cvar.FindVar( "sk_plr_dmg_crossbow" );
-local sk_npc_dmg_crossbow = cvar.FindVar( "sk_npc_dmg_crossbow" );
-
 BoltCreate = function( vecOrigin, angAngles, iDamage, pentOwner )
 	-- Create a new entity with CCrossbowBolt private data
 	local pBolt = CreateEntityByName( "crossbow_bolt" );
@@ -152,12 +149,21 @@ end
 -- Output : Returns true on success, false on failure.
 -------------------------------------------------------------------------------
 function SWEP:Reload()
-	if ( _R.CBaseCombatWeapon.Reload( self ) ) then
+if false then
+	if ( self.BaseClass:Reload() ) then
 		self.m_bMustReload = false;
 		return true;
 	end
 
 	return false;
+else
+	self.m_bMustReload = false;
+
+	local flSequenceEndTime = gpGlobals.curtime() + self:SequenceDuration( 132 );
+	self:GetOwner():SetNextAttack( flSequenceEndTime );
+	self.m_flNextPrimaryAttack = flSequenceEndTime;
+	self.m_flNextSecondaryAttack = flSequenceEndTime;
+end
 end
 
 -------------------------------------------------------------------------------
@@ -187,7 +193,7 @@ function SWEP:ItemPostFrame()
 	self:CheckZoomToggle();
 
 	if ( self.m_bMustReload and self:HasWeaponIdleTimeElapsed() ) then
-		self:Reload();
+		--self:Reload();
 	end
 
 	self.BaseClass:ItemPostFrame();
@@ -260,7 +266,7 @@ end
 -------------------------------------------------------------------------------
 function SWEP:Deploy()
 	if ( self.m_iClip1 <= 0 ) then
-		return self:DefaultDeploy( self:GetViewModel(), self:GetWorldModel(), ACT_CROSSBOW_DRAW_UNLOADED, self:GetAnimPrefix() );
+		return self:DefaultDeploy( self:GetViewModel(), self:GetWorldModel(), 467, self:GetAnimPrefix() );
 	end
 
 	self:SetSkin( BOLT_SKIN_GLOW );
