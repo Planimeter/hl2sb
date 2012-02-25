@@ -1,10 +1,8 @@
---========== Copyleft © 2010, Team Sandbox, Some rights reserved. ===========--
+
+--========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============--
 --
--- Purpose: Initialize the base scripted weapon.
+-- Purpose: 
 --
---===========================================================================--
+--=============================================================================--
 
 include( "shared.lua" )
-
-function SWEP:CapabilitiesGet()
-end

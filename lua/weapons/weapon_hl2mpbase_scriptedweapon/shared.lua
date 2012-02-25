@@ -115,7 +115,7 @@ end
 
 	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );
 
-	if ( not self.m_iClip1 and pPlayer:GetAmmoCount( self.m_iPrimaryAmmoType ) <= 0 ) then
+	if ( self.m_iClip1 == 0 and pPlayer:GetAmmoCount( self.m_iPrimaryAmmoType ) <= 0 ) then
 		-- HEV suit - indicate out of ammo condition
 		pPlayer:SetSuitUpdate( "!HEV_AMO0", 0, 0 );
 	end

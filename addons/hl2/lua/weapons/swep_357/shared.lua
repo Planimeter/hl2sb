@@ -1,8 +1,9 @@
---========== Copyleft © 2010, Team Sandbox, Some rights reserved. ===========--
+
+--========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============--
 --
--- Purpose: Initialize the base scripted weapon.
+-- Purpose: 
 --
---===========================================================================--
+--=============================================================================--
 
 SWEP.printname				= "#HL2_357Handgun"
 SWEP.viewmodel				= "models/weapons/v_357.mdl"
@@ -36,8 +37,11 @@ SWEP.BuiltRightHanded		= 1
 SWEP.AllowFlipping			= 1
 SWEP.MeleeWeapon			= 0
 
--- TODO; implement Activity enum library!!
-SWEP.m_acttable				=
+-------------------------------------------------------------------------------
+-- SWeapon357
+-------------------------------------------------------------------------------
+
+SWEP.m_acttable	= 
 {
 	{ 1048, 977, false },
 	{ 1049, 979, false },
@@ -54,14 +58,17 @@ SWEP.m_acttable				=
 	{ 1064, 983, false },
 };
 
+-------------------------------------------------------------------------------
+-- Purpose: 
+-------------------------------------------------------------------------------
 function SWEP:Initialize()
 	self.m_bReloadsSingly	= false;
 	self.m_bFiresUnderwater	= false;
 end
 
-function SWEP:Precache()
-end
-
+-------------------------------------------------------------------------------
+-- Purpose:
+-------------------------------------------------------------------------------
 function SWEP:PrimaryAttack()
 	-- Only the player fires this way so we can cast
 	local pPlayer = self:GetOwner();
@@ -115,38 +122,8 @@ end
 
 	pPlayer:ViewPunch( QAngle( -8, random.RandomFloat( -2, 2 ), 0 ) );
 
-	if ( not self.m_iClip1 and pPlayer:GetAmmoCount( self.m_iPrimaryAmmoType ) <= 0 ) then
+	if ( self.m_iClip1 == 0 and pPlayer:GetAmmoCount( self.m_iPrimaryAmmoType ) <= 0 ) then
 		-- HEV suit - indicate out of ammo condition
 		pPlayer:SetSuitUpdate( "!HEV_AMO0", 0, 0 );
 	end
-end
-
-function SWEP:SecondaryAttack()
-end
-
-function SWEP:Reload()
-	local fRet = self:DefaultReload( self:GetMaxClip1(), self:GetMaxClip2(), 182 );
-	if ( fRet ) then
---		self:WeaponSound( 6 );
-		ToHL2MPPlayer(self:GetOwner()):DoAnimationEvent( 3 );
-	end
-	return fRet;
-end
-
-function SWEP:Think()
-end
-
-function SWEP:CanHolster()
-end
-
-function SWEP:Holster()
-end
-
-function SWEP:Deploy()
-end
-
-function SWEP:ItemPostFrame()
-end
-
-function SWEP:DoImpactEffect()
 end
