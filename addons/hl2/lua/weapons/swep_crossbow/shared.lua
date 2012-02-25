@@ -375,13 +375,16 @@ if _GAME then
 
 	local filter = CPASFilter( data.m_vOrigin );
 	filter:RemoveRecipient( pOwner );
-	DispatchEffect( filter, 0.0, data.m_vOrigin, "CrossbowLoad", data );
+	--FIXME: add te library!!
+	--te.DispatchEffect( filter, 0.0, data.m_vOrigin, "CrossbowLoad", data );
 else
 	local pViewModel = pOwner:GetViewModel();
 
 	if ( pViewModel ~= NULL ) then
 
-		if ( input.CAM_IsThirdPerson() ) then
+		--FIXME: add input library!!
+		--if ( input.CAM_IsThirdPerson() ) then
+		if ( true ) then
 			data.m_hEntity = pViewModel;
 		else
 			data.m_hEntity = self;
@@ -392,6 +395,8 @@ end
 
 	--Tony; switched this up, always attach it to the weapon, not the view model!!
 if not _CLIENT then
+	--FIXME: add CSprite object!!
+	--[[
 	local pBlast = _R.CSprite.SpriteCreate( CROSSBOW_GLOW_SPRITE2, self:GetAbsOrigin(), false );
 
 	if ( pBlast ) then
@@ -401,6 +406,7 @@ if not _CLIENT then
 		pBlast:SetScale( 0.2 );
 		pBlast:FadeOutFromSpawn();
 	end
+	]]
 end
 	
 end
