@@ -66,7 +66,7 @@ function SWEP:PrimaryAttack()
 	-- Only the player fires this way so we can cast
 	local pPlayer = self:GetOwner();
 
-	if ( not pPlayer ) then
+	if ( pPlayer ~= NULL ) then
 		return;
 	end
 
