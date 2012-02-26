@@ -81,7 +81,9 @@ function SWEP:PrimaryAttack()
 		return;
 	end
 
-	self:WeaponSound( 1 );
+	--self:WeaponSound( 1 );
+	local shootsound = self:GetShootSound( 1 );
+	pOwner:EmitSound( shootsound ); 
 	pPlayer:DoMuzzleFlash();
 
 	self:SendWeaponAnim( 180 );
