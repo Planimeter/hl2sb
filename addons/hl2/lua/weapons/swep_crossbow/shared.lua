@@ -253,8 +253,12 @@ end
 
 	pOwner:ViewPunch( QAngle( -2, 0, 0 ) );
 
-	self:WeaponSound( 1 );
-	self:WeaponSound( 12 );
+	--self:WeaponSound( 1 );
+	local shootsound = self:GetShootSound( 1 );
+	pOwner:EmitSound( shootsound ); 
+	--self:WeaponSound( 12 );
+	local shootsound = self:GetShootSound( 12 );
+	pOwner:EmitSound( shootsound ); 
 
 	self:SendWeaponAnim( 180 );
 
