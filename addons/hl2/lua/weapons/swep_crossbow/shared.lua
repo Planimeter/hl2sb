@@ -163,21 +163,12 @@ end
 -- Output : Returns true on success, false on failure.
 -------------------------------------------------------------------------------
 function SWEP:Reload()
-if false then
-	if ( self.BaseClass:Reload() ) then
+	if ( self.BaseClass.Reload( self ) ) then
 		self.m_bMustReload = false;
 		return true;
 	end
 
 	return false;
-else
-	self.m_bMustReload = false;
-
-	local flSequenceEndTime = gpGlobals.curtime() + self:SequenceDuration( 132 );
-	self:GetOwner():SetNextAttack( flSequenceEndTime );
-	self.m_flNextPrimaryAttack = flSequenceEndTime;
-	self.m_flNextSecondaryAttack = flSequenceEndTime;
-end
 end
 
 -------------------------------------------------------------------------------
