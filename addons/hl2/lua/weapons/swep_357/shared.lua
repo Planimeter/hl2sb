@@ -5,37 +5,32 @@
 --
 --=============================================================================--
 
-SWEP.printname				= "#HL2_357Handgun"
-SWEP.viewmodel				= "models/weapons/v_357.mdl"
-SWEP.playermodel			= "models/weapons/w_357.mdl"
-SWEP.anim_prefix			= "python"
-SWEP.bucket					= 1
-SWEP.bucket_position		= 1
+-- 357
 
-SWEP.clip_size				= 6
-SWEP.clip2_size				= -1
-SWEP.default_clip			= 6
-SWEP.default_clip2			= -1
-SWEP.primary_ammo			= "357"
-SWEP.secondary_ammo			= "None"
+-- Weapon data is loaded by both the Game and Client DLLs.
+SWEP.printname			= "#HL2_357Handgun"
+SWEP.viewmodel			= "models/weapons/v_357.mdl"
+SWEP.playermodel		= "models/weapons/w_357.mdl"
+SWEP.anim_prefix		= "python"
+SWEP.bucket			= 1
+SWEP.bucket_position	= 1
 
-SWEP.weight					= 7
-SWEP.item_flags				= 0
+SWEP.clip_size			= 6
+SWEP.default_clip		= 6
+SWEP.primary_ammo		= "357"
+SWEP.secondary_ammo	= "None"
 
-SWEP.damage					= 75
+SWEP.weight		= 7
+SWEP.item_flags		= 0
 
-SWEP.SoundData				=
+SWEP.damage		= 75
+
+-- Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
+SWEP.SoundData =
 {
-	empty					= "Weapon_Pistol.Empty",
-	single_shot				= "Weapon_357.Single"
+	empty		= "Weapon_Pistol.Empty",
+	single_shot	= "Weapon_357.Single"
 }
-
-SWEP.showusagehint			= 0
-SWEP.autoswitchto			= 1
-SWEP.autoswitchfrom			= 1
-SWEP.BuiltRightHanded		= 1
-SWEP.AllowFlipping			= 1
-SWEP.MeleeWeapon			= 0
 
 -------------------------------------------------------------------------------
 -- SWeapon357

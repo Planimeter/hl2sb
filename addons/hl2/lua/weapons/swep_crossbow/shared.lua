@@ -138,7 +138,8 @@ end
 -- Purpose:
 -------------------------------------------------------------------------------
 function SWEP:PrimaryAttack()
-	if ( self.m_bInZoom and g_pGameRules.IsMultiplayer() ) then
+--	if ( self.m_bInZoom and g_pGameRules.IsMultiplayer() ) then
+	if ( self.m_bInZoom and true ) then
 --		self:FireSniperBolt();
 		self:FireBolt();
 	else
@@ -163,6 +164,10 @@ end
 -- Output : Returns true on success, false on failure.
 -------------------------------------------------------------------------------
 function SWEP:Reload()
+	if ( not self.m_bMustReload ) then
+		return false;
+	end
+
 	if ( self.BaseClass.Reload( self ) ) then
 		self.m_bMustReload = false;
 		return true;
@@ -442,7 +447,7 @@ function SWEP:SetChargerState( state )
 
 	if ( self.m_nChargeState == self.ChargerState_t.CHARGER_STATE_START_LOAD ) then
 	
-		self:WeaponSound( SPECIAL1 );
+		self:WeaponSound( 11 );
 		
 		-- Shoot some sparks and draw a beam between the two outer points
 		self:DoLoadEffect();
