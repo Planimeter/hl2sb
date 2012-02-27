@@ -82,8 +82,12 @@ function SWEP:PrimaryAttack()
 	end
 
 	--self:WeaponSound( 1 );
-	local shootsound = self:GetShootSound( 1 );
-	pPlayer:EmitSound( shootsound ); 
+	if ( gpGlobals.maxClients() > 1 ) then
+		self:WeaponSound( 1 );
+	else
+		local shootsound = self:GetShootSound( 1 );
+		pPlayer:EmitSound( shootsound ); 
+	end
 	pPlayer:DoMuzzleFlash();
 
 	self:SendWeaponAnim( 180 );

@@ -254,11 +254,19 @@ end
 	pOwner:ViewPunch( QAngle( -2, 0, 0 ) );
 
 	--self:WeaponSound( 1 );
-	local shootsound = self:GetShootSound( 1 );
-	pOwner:EmitSound( shootsound ); 
+	if ( gpGlobals.maxClients() > 1 ) then
+		self:WeaponSound( 1 );
+	else
+		local shootsound = self:GetShootSound( 1 );
+		pOwner:EmitSound( shootsound ); 
+	end
 	--self:WeaponSound( 12 );
-	local shootsound = self:GetShootSound( 12 );
-	pOwner:EmitSound( shootsound ); 
+	if ( gpGlobals.maxClients() > 1 ) then
+		self:WeaponSound( 12 );
+	else
+		local shootsound = self:GetShootSound( 12 );
+		pOwner:EmitSound( shootsound ); 
+	end
 
 	self:SendWeaponAnim( 180 );
 
