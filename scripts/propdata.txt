@@ -29,6 +29,10 @@
 // "breakable_model"	: The type of breakable gibs this prop should break into. This list is at the bottom of this file.
 // "breakable_count"	: The number of breakable gibs to break into.
 // "allowstatic"	: Allow this prop to be static as well as physically simulated.
+// "physicsmode"	: Set multiplayer physics behaviour (1=full, 2=non-solid,3=clientside)
+// "multiplayer_break"	: Set multiplayer breakable spawn behavior (default/server/client/both)
+//		NOTE: if multiplayer_break is "both", each piece is spawned by the default dll unless its
+//			  "break" section has a "multiplayer_break" key with a value of "client" or "server".
 //
 //
 "PropData.txt"
@@ -68,6 +72,31 @@
 	{
 		"base"		"Cardboard.Base"
 		"health"	"40"
+		"physicsmode"	"1"
+	}
+
+	// Cardboard Boxes full of paper
+	//	i.e. fileboxes, boxes of paper
+	"Cardboard.break"
+	{
+		"base"		"Cardboard.Base"
+		"health"	"10"
+		"physicsmode"	"1"
+	}
+	// Cardboard / Paper blocks, less than 1 foot cubed.
+	//	i.e. small cardboard boxes, notepads, newspapers, thin books.
+	"Cardboard.Indestructable"
+	{
+		"base"		"Cardboard.Base"
+	}
+
+	// Cardboard Boxes full of paper
+	//	i.e. fileboxes, boxes of paper
+	"Cardboard.breakclient"
+	{
+		"base"		"Cardboard.Base"
+		"health"	"10"
+		"physicsmode"	"3"
 	}
 
 //=================================================================================
@@ -104,6 +133,15 @@
 	{
 		"base"		"Cloth.Base"
 		"health"	"100"
+		"physicsmode"	"1"
+	}
+
+	// Misc cloth objects
+	//	i.e. stuffed animals, hats, etc.
+	"Cloth.Object"
+	{
+		"base"		"Cloth.Base"
+		"physicsmode"	"3"
 	}
 
 
@@ -128,8 +166,10 @@
 	{
 		"base"			"Wooden.Base"
 		"health"		"6"
+		"physicsmode"		"3"
 
 		"breakable_count"	"0"
+		
 	}
 
 	// Wooden blocks, less than 1 foot cubed.
@@ -138,7 +178,7 @@
 	{
 		"base"			"Wooden.Base"
 		"health"		"20"
-
+		
 		"breakable_count"	"2"
 	}
 
@@ -148,7 +188,7 @@
 	{
 		"base"			"Wooden.Base"
 		"health"		"30"
-
+		
 		"breakable_count"	"4"
 	}
 
@@ -158,7 +198,7 @@
 	{
 		"base"			"Wooden.Base"
 		"health"		"50"
-
+		"physicsmode"		"1"
 		"breakable_count"	"6"
 	}
 
@@ -178,11 +218,54 @@
 	{
 		"base"			"Wooden.Base"
 		"health"		"130"
+		"physicsmode"		"1"
 
 		"breakable_count"	"10"
 	}
 
+	// small wooden objects
+	//	i.e sticks
+	"Wooden.sticks"
+	{
+		"base"			"Wooden.Base"
+		"physicsmode"		"1"
+		"breakable_count"	"0"
+		
+	}
 
+	// Breakable Barrels
+	// i.e Wine Barrel in de_Inferno
+	"Wooden.Barrel"
+	{
+		"base"			"Wooden.Base"
+		"health"		"50"
+		"physicsmode"		"1"
+
+		"breakable_count"	"0"
+		
+	}
+
+	// Wooden blocks, less than 1 foot cubed.
+	//	i.e pieces of board, branches. (Server side version)
+	"Wooden.Small2"
+	{
+		"base"			"Wooden.Base"
+		"health"		"1"
+		"physicsmode"		"1"
+		"breakable_count"	"2"
+	}
+
+	// Breakable Barrels
+	// i.e Wine Barrel in de_Inferno
+	"Wooden.Barrel2"
+	{
+		"base"			"Wooden.Base"
+		"health"		"201"
+		"physicsmode"		"1"
+
+		"breakable_count"	"0"
+		
+	}
 
 
 //=================================================================================
@@ -203,6 +286,7 @@
 	{
 		"base"		"Stone.Base"
 		"health"	"50"
+		"physicsmode"	"3"
 	}
 
 	// Medium stone blocks, less than 3 foot cubed
@@ -219,6 +303,7 @@
 	{
 		"base"		"Stone.Base"
 		"health"	"200"
+		"physicsmode"	"1"
 	}
 
 	// Huge stone blocks, less than 5 foot cubed
@@ -227,6 +312,16 @@
 	{
 		"base"		"Stone.Base"
 		"health"	"400"
+		"physicsmode"	"1"
+	}
+
+	// Gigantic stone blocks, more than 5 foot cubed
+	// i.e. only damaged by the bomb
+	"Stone.Gigantic"
+	{
+		"base"		"Stone.Base"
+		"health"	"600"
+		"physicsmode"	"1"
 	}
 
 //=================================================================================
@@ -247,6 +342,7 @@
 	{
 		"base"		"Glass.Base"
 		"health"	"5"
+		"physicsmode"	"3"
 		"damage_table"		"glass"
 	}
 
@@ -256,7 +352,28 @@
 		"dmg.explosive" 	"1.0"		// Override base glass explosive behavior
 		"dmg.bullets"		"0.5"
 		"health"		"15"
+		"physicsmode"		"1"
 		"damage_table"		"glass"
+	}
+
+	"Glass.CSWindow"
+	{
+		"base"			"Glass.Window"
+		"health"		"1"				// Shatter immediately, even from grenades.
+		
+	}
+
+	"Glass.picture"
+	{
+		"base"			"Glass.Base"
+		"physicsmode"		"1"
+	}
+	"Glass.CSWindow2"
+	{
+		"base"			"Glass.Window"
+		"health"		"1"				// Shatter immediately, even from grenades.
+		"physicsmode"		"1"
+		
 	}
 
 
@@ -286,6 +403,7 @@
 	"Metal.Medium"
 	{
 		"base"		"Metal.Base"
+		"physicsmode"	"1"
 	}
 
 	// Large metal objects.
@@ -293,8 +411,32 @@
 	"Metal.Large"
 	{
 		"base"		"Metal.Base"
+		"physicsmode"	"1"
 	}
 
+	// Breakable Medium Metal objects
+	"Metal.break"
+	{
+		"base"		"Metal.Base"
+		"physicsmode"	"1"
+		"health"	"10"
+	}
+
+	// Breakable Medium Metal objects
+	"Metal.break2"
+	{
+		"base"		"Metal.Base"
+		"physicsmode"	"1"
+		"health"	"100"
+	}
+
+	// Medium metal objects (Client Side).
+	// i.e. wheelbarrows, metal boxes, bicycles, barrels, ladders, filing cabinets.
+	"Metal.MediumClient"
+	{
+		"base"		"Metal.Base"
+		"physicsmode"	"3"
+	}
 
 
 
@@ -330,6 +472,32 @@
 	"Plastic.Large"
 	{
 		"base"		"Plastic.Base"
+		"physicsmode"	"1"
+	}
+
+
+	// Breakable medium plastic objects
+	"Plastic.break"
+	{
+		"base"		"Plastic.Base"
+		"physicsmode"	"1"
+		"health"	"10"
+	}
+
+	// Breakable small plastic objects
+	"PlasticSmall.break"
+	{
+		"base"		"Plastic.Base"
+		"physicsmode"	"3"
+		"health"	"10"
+	}
+
+
+	// Breakable small plastic objects
+	"Plastic.Small2"
+	{
+		"base"		"Plastic.Base"
+		"physicsmode"	"1"
 	}
 
 
@@ -367,6 +535,7 @@
 	"Item.Large"
 	{
 		"base"		"Item.Base"
+		"physicsmode"	"1"
 	}
 
 
@@ -405,6 +574,7 @@
 	{
 		"base"		"Pottery.Base"
 		"health"	"70"
+		"physicsmode"	"1"
 	}
 
 	// Huge pottery objects.
@@ -413,8 +583,39 @@
 	{
 		"base"		"Pottery.Base"
 		"health"	"100"
+		"physicsmode"	"1"
 	}
 
+	// Breakable small pottery
+	"Pottery.break"
+	{
+		"base"		"Pottery.Base"
+		"physicsmode"	"3"
+		"health"	"20"
+	}
+
+	// small potted plants
+	"Pottery.Plant"
+	{
+		"base"		"Pottery.Base"
+		"physicsmode"	"3"
+	}
+
+	// Breakable small pottery (Server Side)
+	"Pottery.break2"
+	{
+		"base"		"Pottery.Base"
+		"physicsmode"	"1"
+		"health"	"20"
+	}
+
+	// small potted plants (Breakable)
+	"Pottery.PlantBreak"
+	{
+		"base"		"Pottery.Base"
+		"physicsmode"	"3"
+		"health"	"20"
+	}
 
 //=================================================================================
 //		FLESH
