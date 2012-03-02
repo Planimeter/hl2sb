@@ -4,8 +4,6 @@
 --
 --===========================================================================--
 
-include( "in_main.lua" )
-
 GM.Name			= "Sandbox"
 GM.Homepage		= "http://www.half-life2sandbox.com/"
 GM.Developer	= "Team Sandbox"
