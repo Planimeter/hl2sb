@@ -4,6 +4,8 @@
 --
 --===========================================================================--
 
+local FCVAR_GAMEDLL = _E.FVAR.GAMEDLL
+
 require( "concommand" )
 
 local function IN_BuildDown( pPlayer, pCmd, args )
@@ -13,7 +15,7 @@ local function IN_BuildDown( pPlayer, pCmd, args )
 	print( "\t" .. args )
 end
 
-concommand.Create( "+buildmenu", IN_BuildDown, nil, 2^3 )
+concommand.Create( "+buildmenu", IN_BuildDown, nil, FCVAR_GAMEDLL )
 
 local function IN_BuildUp( pPlayer, pCmd, args )
 	print( "IN_BuildUp:" )
@@ -22,4 +24,4 @@ local function IN_BuildUp( pPlayer, pCmd, args )
 	print( "\t" .. args )
 end
 
-concommand.Create( "-buildmenu", IN_BuildUp, nil, 2^3 )
+concommand.Create( "-buildmenu", IN_BuildUp, nil, FCVAR_GAMEDLL )

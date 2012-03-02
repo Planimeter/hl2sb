@@ -4,6 +4,8 @@
 --
 --===========================================================================--
 
+local FCVAR_CLIENTDLL = _E.FCVAR.CLIENTDLL
+
 require( "concommand" )
 
 local hContentDialog = INVALID_PANEL
@@ -38,4 +40,4 @@ local function OnOpenContentDialog()
 	hContentDialog:Activate();
 end
 
-concommand.Create( "OpenContentDialog", OnOpenContentDialog, "Open content dialog.", 2^3 )
+concommand.Create( "OpenContentDialog", OnOpenContentDialog, "Open content dialog.", FCVAR_CLIENTDLL )
