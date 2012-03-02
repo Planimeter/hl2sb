@@ -12,6 +12,9 @@ end
 function GM:CanShowSpeakerLabels()
 end
 
+function GM:CreateDefaultPanels()
+end
+
 function GM:DrawHeadLabels( pPlayer )
 end
 
