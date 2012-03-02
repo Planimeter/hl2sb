@@ -4,28 +4,16 @@
 --
 --===========================================================================--
 
-local FCVAR_CLIENTDLL = _E.FCVAR.CLIENTDLL
-
 require( "concommand" )
 
 local function IN_BuildDown( pPlayer, pCmd, args )
-	if ( pPlayer ~= NULL ) then
-		local pWeapon = pPlayer:GetActiveWeapon()
-		if ( pWeapon ~= NULL ) then
-			pWeapon:Lower()
-		end
-	end
+	print( "CLIENT: " .. tostring( pPlayer ) )
 end
 
-concommand.Create( "+buildmenu", IN_BuildDown, nil, FCVAR_CLIENTDLL )
+concommand.Create( "+buildmenu", IN_BuildDown, nil )
 
 local function IN_BuildUp( pPlayer, pCmd, args )
-	if ( pPlayer ~= NULL ) then
-		local pWeapon = pPlayer:GetActiveWeapon()
-		if ( pWeapon ~= NULL ) then
-			pWeapon:Ready()
-		end
-	end
+	print( "CLIENT: " .. tostring( pPlayer ) )
 end
 
-concommand.Create( "-buildmenu", IN_BuildUp, nil, FCVAR_CLIENTDLL )
+concommand.Create( "-buildmenu", IN_BuildUp, nil )
