@@ -7,13 +7,17 @@
 require( "concommand" )
 
 local function IN_BuildDown( pPlayer, pCmd, args )
-	print( "CLIENT: " .. tostring( pPlayer ) )
+	if ( _GAMEMODE.gBuildMenuInterface ) then
+		_GAMEMODE.gBuildMenuInterface:ShowPanel( true )
+	end
 end
 
 concommand.Create( "+buildmenu", IN_BuildDown, nil )
 
 local function IN_BuildUp( pPlayer, pCmd, args )
-	print( "CLIENT: " .. tostring( pPlayer ) )
+	if ( _GAMEMODE.gBuildMenuInterface ) then
+		_GAMEMODE.gBuildMenuInterface:ShowPanel( false )
+	end
 end
 
 concommand.Create( "-buildmenu", IN_BuildUp, nil )
