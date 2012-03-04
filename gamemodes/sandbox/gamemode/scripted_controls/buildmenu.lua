@@ -50,19 +50,9 @@ if false then
 		self:Run( self.m_pMainMenu );
 end
 
-		self:SetKeyBoardInputEnabled( true );
 		self:SetMouseInputEnabled( true );
 		self:SetVisible( true )
-		surface.CalculateMouseVisible()
 		self:MakePopup();
-		self:RequestFocus();
-
-if false then
-		--Place the mouse cursor near the text so people notice it.
-		local x, y, w, h;
-		x, y, w, h = self:GetBounds();
-		input.SetCursorPos( x + ( w/2), y + (h/2) );
-end
 	else
 		self:SetVisible( false );
 		self:SetMouseInputEnabled( false );
