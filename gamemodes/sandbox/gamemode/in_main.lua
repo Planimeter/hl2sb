@@ -7,16 +7,16 @@
 require( "concommand" )
 
 local function IN_BuildDown( pPlayer, pCmd, args )
-	if ( _GAMEMODE.gBuildMenuInterface ) then
-		_GAMEMODE.gBuildMenuInterface:ShowPanel( true )
+	if ( gBuildMenuInterface ) then
+		gBuildMenuInterface:ShowPanel( true )
 	end
 end
 
 concommand.Create( "+buildmenu", IN_BuildDown, nil )
 
 local function IN_BuildUp( pPlayer, pCmd, args )
-	if ( _GAMEMODE.gBuildMenuInterface ) then
-		_GAMEMODE.gBuildMenuInterface:ShowPanel( false )
+	if ( gBuildMenuInterface ) then
+		gBuildMenuInterface:ShowPanel( false )
 	end
 end
 
