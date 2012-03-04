@@ -54,6 +54,7 @@ end
 		self:SetMouseInputEnabled( true );
 		self:SetVisible( true )
 		surface.CalculateMouseVisible()
+		self:MakePopup();
 		self:RequestFocus();
 
 if false then
