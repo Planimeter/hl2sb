@@ -10,7 +10,9 @@ local CBuildSubMenu = vgui.CBuildSubMenu
 local ScreenWidth = UTIL.ScreenWidth
 local ScreenHeight = UTIL.ScreenHeight
 
-local CBuildMenu = {}
+local CBuildMenu = {
+	m_hFonts = {}
+}
 
 -------------------------------------------------------------------------------
 -- Purpose: Constructor
