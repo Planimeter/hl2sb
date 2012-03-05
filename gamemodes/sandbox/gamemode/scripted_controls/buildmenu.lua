@@ -11,7 +11,9 @@ local ScreenWidth = UTIL.ScreenWidth
 local ScreenHeight = UTIL.ScreenHeight
 
 local CBuildMenu = {
-	m_hFonts = {}
+	m_hFonts = {},
+	m_lastx = nil,
+	m_lasty = nil,
 }
 
 -------------------------------------------------------------------------------
@@ -55,7 +57,15 @@ end
 		self:SetMouseInputEnabled( true );
 		self:SetVisible( true )
 		self:MakePopup();
+
+		if ( m_lastx and m_lasty ) then
+			input.SetCursorPos( m_lastx, m_lasty )
+		end
 	else
+		if ( not m_lastx and not m_lasty ) then
+			m_lastx, m_lasty = input.GetCursorPos()
+		end
+
 		self:SetVisible( false );
 		self:SetMouseInputEnabled( false );
 	end
