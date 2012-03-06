@@ -62,9 +62,7 @@ end
 			input.SetCursorPos( m_lastx, m_lasty )
 		end
 	else
-		if ( not m_lastx and not m_lasty ) then
-			m_lastx, m_lasty = input.GetCursorPos()
-		end
+		m_lastx, m_lasty = input.GetCursorPos()
 
 		self:SetVisible( false );
 		self:SetMouseInputEnabled( false );
