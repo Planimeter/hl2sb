@@ -83,13 +83,7 @@ function SWEP:PrimaryAttack()
 		return;
 	end
 
-	--self:WeaponSound( 1 );
-	if ( gpGlobals.maxClients() > 1 ) then
-		self:WeaponSound( 1 );
-	else
-		local shootsound = self:GetShootSound( 1 );
-		pPlayer:EmitSound( shootsound ); 
-	end
+	self:WeaponSound( 1 );
 	pPlayer:DoMuzzleFlash();
 
 	self:SendWeaponAnim( 180 );
