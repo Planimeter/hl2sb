@@ -142,6 +142,10 @@ end
 function SWEP:Deploy()
 end
 
+function SWEP:GetDrawActivity()
+	return 171;
+end
+
 function SWEP:Holster( pSwitchingTo )
 end
 
