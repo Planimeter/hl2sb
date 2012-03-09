@@ -4,22 +4,51 @@
 --
 --===========================================================================--
 
-local dump = {}
-
-local function swapcopy( t )
-  local __copy = {}
-	for k, v in pairs( t ) do
-		__copy[ tostring( v ) ] = k
-		print( "__copy[ " .. tostring( v ) .. " ] = " .. k )
-	end
-	return __copy
+local function kpairs( t, f )
+  local a = {}
+  for n in pairs( t ) do
+  	table.insert( a, n )
+  end
+  table.sort( a, f )
+  local i = 0
+  local iter = function()
+    i = i + 1
+    if ( a[ i ] == nil ) then
+      return nil
+    else
+      return a[ i ], t[ a[ i ] ]
+    end
+  end
+  return iter
 end
 
-for name, lib in pairs( _E ) do
-	print( "_E." .. name .. ": " .. tostring( lib ) )
-	dump = swapcopy( lib )
-	table.sort( dump, function( a, b ) return dump[ a ] < dump[ b ] end )
-	for v, enum in pairs( dump ) do
-		print( "  _E." .. name .. "." .. enum .. ": " .. v )
-	end
+local function vpairs( t, f )
+  local a = {}
+  for _, n in pairs( t ) do
+  	table.insert( a, n )
+  end
+  table.sort( a, f )
+  local i = 0
+  local iter = function()
+    i = i + 1
+    if ( a[ i ] == nil ) then
+      return nil
+    else
+      local k = nil
+      for lookup, v in pairs( t ) do
+      	if ( v == a[ i ] ) then
+      	  k = lookup
+      	end
+      end
+      return k, a[ i ]
+    end
+  end
+  return iter
+end
+
+for name, lib in kpairs( _E ) do
+  print( "_E." .. name .. ": " .. tostring( lib ) )
+  for enum, v in vpairs( lib ) do
+  	print( "  _E." .. name .. "." .. enum .. ": " .. v )
+  end
 end
