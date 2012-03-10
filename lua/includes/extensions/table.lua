@@ -52,6 +52,12 @@ function table.inherit( t, BaseClass )
 end
 
 function table.merge( dest, src )
+  if ( type( dest ) ~= "table" ) then
+    error( "bad argument #1 to 'merge' (table expected, got " .. type( dest ) .. ")", 2 )
+  end
+  if ( type( src ) ~= "table" ) then
+    error( "bad argument #2 to 'merge' (table expected, got " .. type( src ) .. ")", 2 )
+  end
   for k, v in pairs( src ) do
     if ( type( dest[ k ] ) == "table" and type( v ) == "table" ) then
       table.merge( dest[ k ], v )
