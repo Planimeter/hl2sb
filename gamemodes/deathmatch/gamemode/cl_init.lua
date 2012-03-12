@@ -27,13 +27,16 @@ end
 function GM:HudElementShouldDraw( pElementName )
 end
 
+function GM:HudViewportPaint()
+end
+
 function GM:LevelInitPreEntity()
 end
 
 function GM:LevelInitPostEntity()
 end
 
-function GM:HudViewportPaint()
+function GM:PlayerUpdateFlashlight( position, vecForward, vecRight, vecUp, nDistance )
 end
 
 function GM:ShouldDrawLocalPlayer()
