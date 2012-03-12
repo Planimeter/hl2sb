@@ -36,7 +36,7 @@ end
 function GM:LevelInitPostEntity()
 end
 
-function GM:PlayerUpdateFlashlight( position, vecForward, vecRight, vecUp, nDistance )
+function GM:PlayerUpdateFlashlight( pHL2MPPlayer, position, vecForward, vecRight, vecUp, nDistance )
 end
 
 function GM:ShouldDrawLocalPlayer()
