@@ -4,24 +4,28 @@
 --
 --===========================================================================--
 
+local AngleVectors = mathlib.AngleVectors
+
 hook.add( "PlayerUpdateFlashlight", "PlayerUpdateWeaponFlashlight", function( pHL2MPPlayer, position, vecForward, vecRight, vecUp, nDistance )
 	--if ( not input.CAM_IsThirdPerson() ) then
-		print( pHL2MPPlayer )
-		local iAttachment = pHL2MPPlayer:LookupAttachment( "anim_attachment_RH" );
+		local vm = pHL2MPPlayer:GetViewModel()
+		if ( vm ~= NULL ) then
+			local iAttachment = vm:LookupAttachment( "muzzle" );
 
-		if ( iAttachment >= 0 ) then
-			local vecOrigin = Vector();
-			--Tony; EyeAngles will return proper whether it's local player or not.
-			local eyeAngles = pHL2MPPlayer:EyeAngles();
+			if ( iAttachment >= 0 ) then
+				local vecOrigin = Vector();
+				--Tony; EyeAngles will return proper whether it's local player or not.
+				local eyeAngles = pHL2MPPlayer:EyeAngles();
 
-			pHL2MPPlayer:GetAttachment( iAttachment, vecOrigin, eyeAngles );
+				vm:GetAttachment( iAttachment, vecOrigin, eyeAngles );
 
-			local vForward = Vector();
-			AngleVectors( eyeAngles, vecForward, vecRight, vecUp );
-			position = vecOrigin;
-		else
-			pHL2MPPlayer:EyeVectors( vecForward, vecRight, vecUp );
+				local vForward = Vector();
+				AngleVectors( eyeAngles, vecForward, vecRight, vecUp );
+				position = vecOrigin;
+			else
+				vecForward, vecRight, vecUp = pHL2MPPlayer:EyeVectors();
+			end
+			return position, vecForward, vecRight, vecUp, nDistance
 		end
-		return position, vecForward, vecRight, vecUp, nDistance
 	--end
 end )
