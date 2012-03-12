@@ -22,10 +22,8 @@ hook.add( "PlayerUpdateFlashlight", "PlayerUpdateWeaponFlashlight", function( pH
 				local vForward = Vector();
 				AngleVectors( eyeAngles, vecForward, vecRight, vecUp );
 				position = vecOrigin;
-			else
-				vecForward, vecRight, vecUp = pHL2MPPlayer:EyeVectors();
+				return position, vecForward, vecRight, vecUp, nDistance
 			end
-			return position, vecForward, vecRight, vecUp, nDistance
 		end
 	--end
 end )
