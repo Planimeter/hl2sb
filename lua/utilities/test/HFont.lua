@@ -31,6 +31,7 @@ g_hFontTestFrame:SetTitle( "Font Test", true )
 g_hFontTestFrame:SetVisible( true )
 
 g_hFontTestFrame.m_hFontSamples = Panel( g_hFontTestFrame, "FontSamples" )
+g_hFontTestFrame.m_hFontSamples:SetProportional( true )
 
 local iFontWide, iFontTall = surface.GetTextSize( hTestFont, strTextSample )
 g_hFontTestFrame.m_hFontSamples:SetPos( 0, 120/2 - iFontTall/2 + 4 )
