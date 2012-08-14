@@ -42,4 +42,7 @@ function g_hFontTestFrame.m_hFontSamples:Paint()
   surface.DrawPrintText( strTextSample )
 end
 
-g_hFontTestFrame:DoModal()
+-- move to the middle of the screen
+g_hFontTestFrame:MoveToCenterOfScreen();
+g_hFontTestFrame:InvalidateLayout();
+g_hFontTestFrame:Activate();
