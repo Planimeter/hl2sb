@@ -20,7 +20,7 @@ local CBuildMenu = {
 -- Purpose: Constructor
 -------------------------------------------------------------------------------
 function CBuildMenu:Init(pViewPort)
-	self:SetScheme("ClientScheme");
+	-- self:SetScheme("ClientScheme");
 
 	self:SetProportional(true);
 	-- Make it screen sized
