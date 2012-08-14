@@ -16,12 +16,13 @@ surface.AddCustomFontFile( "gamemodes\\sandbox\\content\\resource\\DINLi.ttf" )
 local hTestFont = surface.CreateFont()
 surface.SetFontGlyphSet( hTestFont,
                          "DIN-Light",
-                         36,
+                         32,
                          0,
                          0,
                          0,
-                         bit.bor( 0x010, 0x100, 0x400 )
-                       )
+                         bit.bor( 0x010, 0x100, 0x400 ) )
+
+local strTextSample = "The five boxing wizards jump quickly."
 
 g_hFontTestFrame = Frame()
 g_hFontTestFrame:SetBounds( 0, 0, 408, 120 );
@@ -30,12 +31,14 @@ g_hFontTestFrame:SetTitle( "Font Test", true )
 g_hFontTestFrame:SetVisible( true )
 
 g_hFontTestFrame.m_hFontSamples = Panel( g_hFontTestFrame, "FontSamples" )
-g_hFontTestFrame.m_hFontSamples:SetSize( 408, 120 )
+
+local iFontWide, iFontTall = surface.GetTextSize( hTestFont, strTextSample )
+g_hFontTestFrame.m_hFontSamples:SetPos( 0, 120/2 - iFontTall/2 + 4 )
+g_hFontTestFrame.m_hFontSamples:SetSize( 408, iFontTall + 8 )
 
 function g_hFontTestFrame.m_hFontSamples:Paint()
   surface.DrawSetTextFont( hTestFont )
-  surface.DrawSetTextPos( 16, 60 + 8 - surface.GetFontTall( hTestFont ) / 2 )
-  surface.DrawPrintText( "The five boxing wizards jump quickly." )
+  surface.DrawPrintText( strTextSample )
 end
 
 g_hFontTestFrame:DoModal()
