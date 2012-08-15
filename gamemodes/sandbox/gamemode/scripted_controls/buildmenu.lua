@@ -20,14 +20,12 @@ local CBuildMenu = {
 -- Purpose: Constructor
 -------------------------------------------------------------------------------
 function CBuildMenu:Init(pViewPort)
-	-- self:SetScheme("ClientScheme");
-
 	self:SetProportional(true);
 	-- Make it screen sized
 	self:SetBounds( 0, 0, ScreenWidth(), ScreenHeight() );
 
 
-	self:SetAutoDelete( false ); -- we reuse this panel, don't let WizardPanel delete us
+	self:SetAutoDelete( false );
 	
 	self.m_pViewPort = pViewPort;
 
@@ -41,11 +39,10 @@ end
 
 function CBuildMenu:ApplySchemeSettings( pScheme )
 	self:SetBgColor( Color(0, 0, 0, 80) );
-	self:SetPaintBackgroundType( 0 );
 end
 
 -------------------------------------------------------------------------------
--- Purpose: shows/hides the buy menu
+-- Purpose: shows/hides the build menu
 -------------------------------------------------------------------------------
 function CBuildMenu:ShowPanel(bShow)
 	if ( self:IsVisible() == bShow ) then
@@ -55,36 +52,26 @@ function CBuildMenu:ShowPanel(bShow)
 	if ( bShow ) then
 		self:Update();
 
-if false then
-		self:Run( self.m_pMainMenu );
-end
-
 		self:SetMouseInputEnabled( true );
 		self:SetVisible( true )
 		self:MakePopup();
 
-		if ( m_lastx and m_lasty ) then
-			input.SetCursorPos( m_lastx, m_lasty )
+		if ( self.m_lastx and self.m_lasty ) then
+			input.SetCursorPos( self.m_lastx, self.m_lasty )
 		end
 	else
-		m_lastx, m_lasty = input.GetCursorPos()
+		self.m_lastx, self.m_lasty = input.GetCursorPos()
 
 		self:SetVisible( false );
 		self:SetMouseInputEnabled( false );
 	end
-
-if false then
-	self.m_pViewPort:ShowBackGround( bShow );
-end
 end
 
 
 function CBuildMenu:Update()
-	--Don't need to do anything, but do need to implement this function as base is pure virtual
 end
 function CBuildMenu:OnClose()
 	self.BaseClass:OnClose();
-	self:ResetHistory();
 end
 
 vgui.register( CBuildMenu, "CBuildMenu", "Panel" )
