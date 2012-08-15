@@ -20,10 +20,7 @@ end
 table.sort( tMetatables )
 local file = assert( io.open( "objects.txt", "wb" ) )
 for i, metatable in pairs( tMetatables ) do
-  if ( i == #tMetatables ) then
-    br = ""
-  end
-  -- print( "*[[" .. metatable .. "]]" .. br )
-  file:write( "*[[" .. metatable .. "]]" .. br .."\r\n" )
+  -- print( "*[[" .. metatable .. "]]" )
+  file:write( "*[[" .. metatable .. "]]\r\n" )
 end
 assert( io.close( file ) )

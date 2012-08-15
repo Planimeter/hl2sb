@@ -39,6 +39,11 @@ end
 	self:SetVisible( false )
 end
 
+function CBuildMenu:ApplySchemeSettings( pScheme )
+	self:SetBgColor( Color(0, 0, 0, 80) );
+	self:SetPaintBackgroundType( 0 );
+end
+
 -------------------------------------------------------------------------------
 -- Purpose: shows/hides the buy menu
 -------------------------------------------------------------------------------
