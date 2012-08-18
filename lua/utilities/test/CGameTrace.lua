@@ -17,7 +17,7 @@ local vForward = pPlayer:EyeVectors();
 
 local vecEye = pPlayer:EyePosition();
 local tr = trace_t()
-UTIL.TraceLine( vecEye, vecEye + vForward * 65535, MASK_SHOT, pPlayer, COLLISION_GROUP_NONE, tr );
+UTIL.TraceLine( vecEye, vecEye + vForward * 10000, MASK_SHOT, pPlayer, COLLISION_GROUP_NONE, tr );
 print( tr )
 local pEntity = tr.m_pEnt
 print( pEntity )
