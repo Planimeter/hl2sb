@@ -27,10 +27,10 @@ function get( strClassname )
   if ( tWeapon.__base ~= strClassname ) then
     local tBaseWeapon = get( tWeapon.__base )
     if ( not tBaseWeapon ) then
-	  Warning( "WARNING: Attempted to initialize weapon \"" .. strClassname .. "\" with non-existing base class!\n" )
-	else
-	  return table.inherit( tWeapon, tBaseWeapon )
-	end
+      Warning( "WARNING: Attempted to initialize weapon \"" .. strClassname .. "\" with non-existing base class!\n" )
+    else
+      return table.inherit( tWeapon, tBaseWeapon )
+    end
   end
   return tWeapon
 end
@@ -47,8 +47,8 @@ end
 -------------------------------------------------------------------------------
 -- Purpose: Registers a weapon
 -- Input  : tWeapon - Weapon table
---		      strClassname - Name of the weapon
---		      bReload - Whether or not we're reloading this weapon data
+--          strClassname - Name of the weapon
+--          bReload - Whether or not we're reloading this weapon data
 -- Output :
 -------------------------------------------------------------------------------
 function register( tWeapon, strClassname, bReload )

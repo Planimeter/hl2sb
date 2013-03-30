@@ -4,9 +4,7 @@
 --
 --===========================================================================--
 
--- Andrew; We'll have multiple internal base classes, but all of those internal
--- classes inherit from CBaseAnimating, so this is our default.
-_BASE_ENTITY_CLASS = "CBaseAnimating"
+_BASE_ENTITY_CLASS = "prop_scripted"
 
 local table = table
 local Warning = dbg.Warning
@@ -14,14 +12,6 @@ local Warning = dbg.Warning
 module( "entity" )
 
 local tEntities = {}
-
--- These are our internal base classes we can inherit from. In the event our
--- entity's __base metafield is equal to one of these, it inherits directly
--- from an internal class, and not another scripted entity.
--- TODO: add more entity types, such as point and brush!!
-local tEntityBaseClasses = {
-	"CBaseAnimating"
-}
 
 -------------------------------------------------------------------------------
 -- Purpose: Returns an entity table
@@ -34,13 +24,13 @@ function get( strClassname )
     return nil
   end
   tEntity = table.copy( tEntity )
-  if ( not table.hasvalue( tEntityBaseClasses, tEntity.__base ) ) then
+  if ( tEntity.__base ~= strClassname ) then
     local tBaseEntity = get( tEntity.__base )
     if ( not tBaseEntity ) then
-	  Warning( "WARNING: Attempted to initialize entity \"" .. strClassname .. "\" with non-existing base class!\n" )
-	else
-	  return table.inherit( tEntity, tBaseEntity )
-	end
+      Warning( "WARNING: Attempted to initialize entity \"" .. strClassname .. "\" with non-existing base class!\n" )
+    else
+      return table.inherit( tEntity, tBaseEntity )
+    end
   end
   return tEntity
 end
@@ -57,8 +47,8 @@ end
 -------------------------------------------------------------------------------
 -- Purpose: Registers an entity
 -- Input  : tEntity - Entity table
---			strClassname - Name of the entity
---			bReload - Whether or not we're reloading this entity data
+--          strClassname - Name of the entity
+--          bReload - Whether or not we're reloading this entity data
 -- Output :
 -------------------------------------------------------------------------------
 function register( tEntity, strClassname, bReload )

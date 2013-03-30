@@ -4,7 +4,13 @@
 --
 --===========================================================================--
 
+ENT.__base = "prop_scripted"
+ENT.__factory = "CBaseAnimating"
+
 function ENT:Initialize()
+end
+
+function ENT:UpdateOnRemove()
 end
 
 function ENT:StartTouch( pOther )
