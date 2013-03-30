@@ -20,7 +20,7 @@ surface.SetFontGlyphSet( hTestFont,
                          0,
                          0,
                          0,
-                         bit.bor( 0x010, 0x100, 0x400 ) )
+                         bor( 0x010, 0x100, 0x400 ) )
 
 local strTextSample = "The five boxing wizards jump quickly."
 
