@@ -36,11 +36,7 @@ function GM:ResetChangeLevel()
       local vecMaxs = pEntity:WorldAlignMaxs()
       local vecOrigin = vecMaxs - ((vecMaxs - vecMins) / 2)
       UTIL.SetOrigin( pTrigger, vecOrigin );
-      -- UTIL.SetSize( pTrigger, vecMins, vecMaxs );
-      pTrigger.m_vecMins = vecMins
-      pTrigger.m_vecMaxs = vecMaxs
-      print( "pTrigger.m_vecMins: " .. tostring( pTrigger.m_vecMins ) )
-      print( "pTrigger.m_vecMaxs: " .. tostring( pTrigger.m_vecMaxs ) )
+      UTIL.SetSize( pTrigger, vecMins, vecMaxs );
 
       pTrigger:Spawn();
     end
