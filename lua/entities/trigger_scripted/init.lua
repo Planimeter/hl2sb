@@ -10,9 +10,6 @@ ENT.__factory = "CBaseTrigger"
 function ENT:Initialize()
 end
 
-function ENT:UpdateOnRemove()
-end
-
 function ENT:PassesTriggerFilters( pOther )
 end
 

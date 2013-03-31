@@ -10,9 +10,6 @@ ENT.__factory = "CBaseAnimating"
 function ENT:Initialize()
 end
 
-function ENT:UpdateOnRemove()
-end
-
 function ENT:StartTouch( pOther )
 end
 
