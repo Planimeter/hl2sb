@@ -1,23 +1,23 @@
 --======== Copyleft © 2010-2011, Team Sandbox, Some rights reserved. ========--
 --
--- Purpose: Dumps a list of enumerations in _G in wiki format for Sandpedia.
+-- Purpose: Dumps a list of enumerations in _E in wiki format for Sandpedia.
 --
 --===========================================================================--
 
+-- List of enumerations in the Source Engine Lua API
+
 local enumerations = {}
 
-for enumeration, n in pairs( _G ) do
-  if ( type( n ) == "number" ) then
-    table.insert( enumerations, enumeration )
+for prefix, t in pairs( _E ) do
+  for name, n in pairs( t ) do
+    table.insert( enumerations, prefix .. "_" .. name )
   end
 end
 
 table.sort( enumerations )
 
--- Andrew; just remove any shared enumerations, put them in Shared:Enumerations
-for i, enumeration in pairs( enumerations ) do
-  if ( i == #enumerations ) then
-    br = ""
-  end
-  print( "*[[_G." .. enumeration .. "|" .. enumeration .. "]]" )
+local file = assert( io.open( "enumerations.txt", "wb" ) )
+for i, enumeration in ipairs( enumerations ) do
+  file:write( "*[[_E." .. enumeration .. "|" .. enumeration .. "]]\r\n" )
 end
+assert( io.close( file ) )

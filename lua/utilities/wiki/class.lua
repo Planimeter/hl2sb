@@ -1,6 +1,6 @@
 --======== Copyleft © 2010-2011, Team Sandbox, Some rights reserved. ========--
 --
--- Purpose: Dumps an individual object in wiki format for Sandpedia.
+-- Purpose: Dumps an individual class in wiki format for Sandpedia.
 --
 --===========================================================================--
 
@@ -15,23 +15,19 @@ for k, v in pairs( _R ) do
   end
 end
 
-for _, OBJECT in pairs( tMetatables ) do
-  if ( OBJECT ~= "FILE*" ) then
+for _, CLASS in pairs( tMetatables ) do
+  if ( CLASS ~= "FILE*" ) then
     local fields = {}
 
-    for field, _ in pairs( _R[ OBJECT ] ) do
+    for field, _ in pairs( _R[ CLASS ] ) do
       table.insert( fields, field )
     end
 
     table.sort( fields )
 
-    local file = assert( io.open( OBJECT .. ".txt", "wb" ) )
+    local file = assert( io.open( CLASS .. ".txt", "wb" ) )
     for i, field in pairs( fields ) do
-      if ( i == #fields ) then
-        br = ""
-      end
-      -- print( "*[[" .. OBJECT .. "." .. field .. "]]" )
-      file:write( "*[[" .. OBJECT .. "." .. field .. "]]" .. "\r\n" )
+      file:write( "*[[" .. CLASS .. "." .. field .. "]]\r\n" )
     end
     assert( io.close( file ) )
   end

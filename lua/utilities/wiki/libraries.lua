@@ -4,12 +4,12 @@
 --
 --===========================================================================--
 
--- Andrew; For page "List of libraries in Half-Life 2: Sandbox"
+-- List of libraries in the Source Engine Lua API
 
 local blacklist = {
-  -- HL2:SB table objects
+  -- Source Engine Lua API table objects
   "_GAMEMODE",
-  -- HL2:SB registry pseudo-index
+  -- Source Engine Lua API registry pseudo-index
   "_R",
 
   -- Andrew; We'll actually list these, except manually in Shared:Libraries
@@ -48,13 +48,8 @@ end
 
 table.sort( libraries )
 
--- Andrew; just remove any shared libraries, put them in Shared:Libraries
 local file = assert( io.open( "libraries.txt", "wb") )
 for i, library in pairs( libraries ) do
-  if ( i == #libraries ) then
-    br = ""
-  end
-  -- print( "*[[" .. library .. "]]" .. br )
-  file:write( "*[[" .. library .. "]]" .. br .. "\r\n" )
+  file:write( "*[[" .. library .. "]]\r\n" )
 end
 assert( io.close( file ) )

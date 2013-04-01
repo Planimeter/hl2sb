@@ -4,10 +4,10 @@
 --
 --===========================================================================--
 
+-- List of globals in the Source Engine Lua API
+
 local globals = {}
 
--- Andrew; dump the globals, purge the enumerations, we'll deal with that in a
--- separate article.
 for global, v in pairs( _G ) do
   if ( type( v ) ~= "number" and type( v ) ~= "table" ) then
     table.insert( globals, global )
@@ -16,13 +16,8 @@ end
 
 table.sort( globals )
 
--- Andrew; just remove any shared globals and put them in Shared:Globals
 local file = assert( io.open( "globals.txt", "wb" ) )
-for i, global in pairs( globals ) do
-  if ( i == #globals ) then
-    br = ""
-  end
-  -- print( "*[[_G." .. global .. "|" .. global .. "]]" .. br )
-  file:write( "*[[_G." .. global .. "|" .. global .. "]]" .. br .. "\r\n" )
+for i, global in ipairs( globals ) do
+  file:write( "*[[_G." .. global .. "|" .. global .. "]]\r\n" )
 end
 assert( io.close( file ) )

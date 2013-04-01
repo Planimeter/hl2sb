@@ -4,8 +4,8 @@
 --
 --===========================================================================--
 
--- Test to see if every metatable is actually a metatable, keep in mind that
--- this can be faked in two shakes of a lamb's tail
+-- List of classes in the Source Engine Lua API
+
 local tMetatables = {}
 
 for k, v in pairs( _R ) do
@@ -18,9 +18,9 @@ for k, v in pairs( _R ) do
 end
 
 table.sort( tMetatables )
-local file = assert( io.open( "objects.txt", "wb" ) )
+
+local file = assert( io.open( "classes.txt", "wb" ) )
 for i, metatable in pairs( tMetatables ) do
-  -- print( "*[[" .. metatable .. "]]" )
   file:write( "*[[" .. metatable .. "]]\r\n" )
 end
 assert( io.close( file ) )

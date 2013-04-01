@@ -4,23 +4,27 @@
 --
 --===========================================================================--
 
--- Andrew; set your desired library here, let the script do the rest.
-local LIBRARY = "coroutine"
+local tLibraries = {}
 
--- Make sure it's loaded!
-local tLib = require( LIBRARY )
-
-local fields = {}
-
-for field, v in pairs( tLib ) do
-  table.insert( fields, field )
+for k, v in pairs( _G ) do
+  -- Only print tables
+  if ( type( v ) == "table" ) then
+    table.insert( tLibraries, k )
+  end
 end
 
-table.sort( fields )
+for _, LIBRARY in pairs( tLibraries ) do
+  local fields = {}
 
-for i, field in pairs( fields ) do
-  if ( i == #fields ) then
-    br = ""
+  for field, _ in pairs( _G[ LIBRARY ] ) do
+    table.insert( fields, field )
   end
-  print( "*[[" .. LIBRARY .. "." .. field .. "]]" )
+
+  table.sort( fields )
+
+  local file = assert( io.open( LIBRARY .. ".txt", "wb" ) )
+  for i, field in pairs( fields ) do
+    file:write( "*[[" .. LIBRARY .. "." .. field .. "]]\r\n" )
+  end
+  assert( io.close( file ) )
 end
