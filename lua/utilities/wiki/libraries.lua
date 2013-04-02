@@ -7,28 +7,25 @@
 -- List of libraries in the Source Engine Lua API
 
 local blacklist = {
+  -- Source Engine Lua API enumerations
+  "_E",
   -- Source Engine Lua API table objects
   "_GAMEMODE",
   -- Source Engine Lua API registry pseudo-index
   "_R",
-
-  -- Andrew; We'll actually list these, except manually in Shared:Libraries
-  -- LuaJIT Libraries
-  "bit",
-  "jit",
 
   -- Lua global pseudo-index
   "_G",
 
   -- Lua Standard Libraries
   "coroutine",
-  "table",
-  "io",
-  "os",
-  "string",
-  "math",
   "debug",
-  "package"
+  "io",
+  "math",
+  "os",
+  "package",
+  "string",
+  "table"
 }
 
 local bBlacklisted = false
@@ -37,8 +34,8 @@ local libraries = {}
 for library, t in pairs( _G ) do
   for _, v in pairs( blacklist ) do
     if ( library == v ) then
-	  bBlacklisted = true
-	end
+      bBlacklisted = true
+    end
   end
   if ( not bBlacklisted and type( t ) == "table" ) then
     table.insert( libraries, library )
