@@ -7,7 +7,6 @@
 GM.Name			= "Campaign"
 GM.Homepage		= "http://www.half-life2sandbox.com/"
 GM.Developer	= "Team Sandbox"
-GM.Manual		= "http://www.half-life2sandbox.com/manual"
 
 function GM:Initialize()
 if ( not _CLIENT ) then
