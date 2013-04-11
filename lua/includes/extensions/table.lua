@@ -9,6 +9,7 @@ require( "table" )
 local setmetatable = setmetatable
 local getmetatable = getmetatable
 local pairs = pairs
+local print = print
 
 function table.copy( t, tRecursive )
   if ( t == nil ) then
@@ -65,4 +66,20 @@ function table.merge( dest, src )
       dest[ k ] = v
     end
 	end
+end
+
+function table.print( t, i )
+  i = i or 0
+  local indent = ""
+  for j = 1, i do
+    indent = indent .. "\t"
+  end
+  for k, v in pairs( t ) do
+    if ( type( v ) == "table" ) then
+      print( indent .. k )
+      table.print( v, i + 1 )
+    else
+      print( indent .. k, v )
+    end
+  end
 end
