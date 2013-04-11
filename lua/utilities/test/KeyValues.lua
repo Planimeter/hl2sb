@@ -4,25 +4,32 @@
 --
 --===========================================================================--
 
-local gamePath
-if _CLIENT then
-	gamePath = engine.GetGameDirectory();
-else
-	gamePath = engine.GetGameDir();
+local function recursiveprintkeyvalues( kv, indent )
+  indent = indent or 0
+
+  local whitespace = ""
+  for i = 1, indent do
+    whitespace = whitespace .. "\t"
+  end
+
+  local t = kv:GetFirstSubKey();
+  while t ~= NULL_KEYVALUES do
+    local k, v = t:GetName(), t:GetString()
+    print( whitespace .. k, v );
+    recursiveprintkeyvalues( t, indent + 1 )
+    t = t:GetNextKey();
+  end
 end
 
-local pMainFile = KeyValues( "gamecontent.txt" );
-if ( pMainFile:LoadFromFile( gamePath .. "/GameContent.txt", "MOD" ) ) then
-	local pFileSystemInfo = pMainFile:FindKey( "FileSystem" );
-	local pKey = pFileSystemInfo:GetFirstSubKey();
-	while pKey ~= NULL_KEYVALUES do
-		if ( pKey:GetName() == "AppId" ) then
-			local nExtraContentId = pKey:GetInt();
-			if (nExtraContentId) then
-				print( nExtraContentId );
-			end
-		end
-		pKey = pKey:GetNextKey();
-	end
+local gamePath
+if _CLIENT then
+  gamePath = engine.GetGameDirectory();
+else
+  gamePath = engine.GetGameDir();
+end
+
+local pMainFile = KeyValues( "gameinfo.txt" );
+if ( pMainFile:LoadFromFile( gamePath .. "/gameinfo.txt", "MOD" ) ) then
+  recursiveprintkeyvalues( pMainFile )
 end
 pMainFile:deleteThis();
