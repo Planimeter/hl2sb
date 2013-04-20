@@ -24,7 +24,7 @@ function GM:ItemShouldRespawn( pItem )
 end
 
 function GM:LevelInit( strMapName, strMapEntities, strOldLevel, strLandmarkName, loadGame, background )
-  self.mapname = strMapName
+  gpGlobals.mapname = strMapName
 end
 
 -- HACKHACK: This should be occurring when the gamemode, or more precisely the
@@ -54,7 +54,7 @@ function GM:ResetChangeLevel()
       pTrigger:Spawn()
 
       -- Huh?
-      if ( pTrigger.m_szMapName == self.mapname ) then
+      if ( pTrigger.m_szMapName == gpGlobals.mapname ) then
         pTrigger:Remove()
       end
     end
@@ -116,7 +116,7 @@ end
 
 function GM:PlayerThink( pPlayer )
   if ( pPlayer.m_nUpdateLoadoutTime and pPlayer.m_nUpdateLoadoutTime <= gpGlobals.curtime() ) then
-    for i = 1, MAX_WEAPONS do
+    for i = 0, MAX_WEAPONS - 1 do
       local pWeapon = pPlayer:GetWeapon(i);
       if ( tostring( pWeapon ) ~= "NULL" ) then
         table.insert( self.m_tLoadout, pWeapon:GetClassname() )
