@@ -4,10 +4,10 @@
 --
 --===========================================================================--
 
-GM.Name			= "Deathmatch"
-GM.Homepage		= "http://www.steampowered.com/"
-GM.Developer	= "Valve"
-GM.Manual		= nil
+GM.Name       = "Deathmatch"
+GM.Homepage   = "http://www.steampowered.com/"
+GM.Developer  = "Valve"
+GM.Manual     = nil
 
 function GM:Initialize()
   self.m_bTeamPlayEnabled = cvar.FindVar( "mp_teamplay" ):GetBool()
@@ -44,7 +44,7 @@ end
 
 function GM:GetGameDescription()
   if ( self:IsTeamplay() ) then
-	return "Team " .. self.Name
+    return "Team " .. self.Name
   end
   return self.Name
 end

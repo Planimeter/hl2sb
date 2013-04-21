@@ -144,6 +144,9 @@ end
 function GM:RestartGame()
 end
 
+function GM:ServerActivate( edictCount, clientMax )
+end
+
 function GM:ShouldHideServer()
 end
 
