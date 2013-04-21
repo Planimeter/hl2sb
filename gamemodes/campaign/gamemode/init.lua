@@ -118,11 +118,11 @@ function GM:PlayerSpawn( pPlayer )
     return false
   end
 
-  local pEntity = gEntList.FindEntityByName( NULL, "global_newgame_template_*" )
+  local pEntity = gEntList.FindEntityByName( NULL, "global_newgame_template*" )
   local tEntities = {}
   while ( pEntity ~= NULL ) do
     pEntity:AcceptInput( "ForceSpawn", pPlayer, pPlayer, 0 )
-    pEntity = gEntList.FindEntityByName( pEntity, "global_newgame_template_*" )
+    pEntity = gEntList.FindEntityByName( pEntity, "global_newgame_template*" )
   end
   return false
 end
