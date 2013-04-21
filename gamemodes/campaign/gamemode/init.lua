@@ -58,11 +58,25 @@ function GM:ResetChangeLevel()
   end
 end
 
+function GM:RemoveFallTriggers()
+  local pEntity = gEntList.FindEntityByName( NULL, "fall_trigger" )
+  local tTriggers = {}
+  while ( pEntity ~= NULL ) do
+    table.insert( tTriggers, pEntity )
+    pEntity = gEntList.FindEntityByClassname( pEntity, "fall_trigger" )
+  end
+
+  for i, pTrigger in ipairs( tTriggers ) do
+    pTrigger:Remove()
+  end
+end
+
 function GM:LevelInit( strMapName, strMapEntities, strOldLevel, strLandmarkName, loadGame, background )
   gpGlobals.mapname = strMapName
 
-  -- self:DebugEntityNames()
+  self:DebugEntityNames()
   self:ResetChangeLevel()
+  self:RemoveFallTriggers()
 
   -- Sometimes an ent will Remove() itself during its precache, so RemoveImmediate won't happen.
   -- This makes sure those ents get cleaned up.
