@@ -14,7 +14,7 @@ function GM:GiveDefaultItems( pHL2MPPlayer )
 end
 
 function GM:ItemShouldRespawn( pItem )
-  return 6 -- GR_ITEM_RESPAWN_NO
+  return 6
 end
 
 function GM:DebugEntityNames()
@@ -131,5 +131,5 @@ function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
 end
 
 function GM:WeaponShouldRespawn( pItem )
-  return 2 -- GR_WEAPON_RESPAWN_NO
+  return 2
 end

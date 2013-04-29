@@ -27,7 +27,7 @@ function GM:GiveDefaultItems( pPlayer )
 end
 
 function GM:ItemShouldRespawn( pItem )
-  return 6 -- GR_ITEM_RESPAWN_NO
+  return 6
 end
 
 function GM:PlayerEntSelectSpawnPoint( pHL2MPPlayer )

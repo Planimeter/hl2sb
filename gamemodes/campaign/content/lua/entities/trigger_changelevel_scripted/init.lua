@@ -16,6 +16,23 @@ local DevMsg = dbg.DevMsg
 ENT.__base = "trigger_scripted"
 ENT.__factory = "CBaseTrigger"
 
+function ENT:InitScriptedTrigger()
+  self:VPhysicsInitNormal( 2, 8, false )
+
+  local w = self.m_vecMaxs.x - self.m_vecMins.x
+  local l = self.m_vecMaxs.y - self.m_vecMins.y
+  local h = self.m_vecMaxs.z - self.m_vecMins.z
+  
+  local mins = Vector( 0 - ( w / 2 ), 0 - ( l / 2 ), 0 - ( h / 2 ) )
+  local maxs = Vector( w / 2, l / 2, h / 2 )
+
+  self:SetCollisionBounds( mins, maxs )
+  
+  self:SetSolid( 2 )
+  self:SetCollisionGroup( 1 )
+  self:SetMoveType( 0 )
+end
+
 function ENT:Initialize()
   if ( not self.m_szMapName ) then
     Msg( "a trigger_changelevel_scripted doesn't have a map" );
@@ -57,23 +74,6 @@ function ENT:FindLandmark( pLandmarkName )
   end
   Warning( "Can't find landmark " .. tostring( pLandmarkName ) .. "\n" );
   return NULL;
-end
-
-function ENT:InitScriptedTrigger()
-  self:VPhysicsInitNormal( 2, 8, false )
-
-  local w = self.m_vecMaxs.x - self.m_vecMins.x
-  local l = self.m_vecMaxs.y - self.m_vecMins.y
-  local h = self.m_vecMaxs.z - self.m_vecMins.z
-  
-  local mins = Vector( 0 - ( w / 2 ), 0 - ( l / 2 ), 0 - ( h / 2 ) )
-  local maxs = Vector( w / 2, l / 2, h / 2 )
-
-  self:SetCollisionBounds( mins, maxs )
-  
-  self:SetSolid( 2 )
-  self:SetCollisionGroup( 1 )
-  self:SetMoveType( 0 )
 end
 
 function ENT:ChangeLevelNow( pActivator )

@@ -42,8 +42,8 @@ end
 -------------------------------------------------------------------------------
 -- Purpose: Registers a gamemode
 -- Input  : tGamemode - Gamemode table object
---			strName - Name of the gamemode
---			strBaseClass - Name of the base class
+--          strName - Name of the gamemode
+--          strBaseClass - Name of the base class
 -- Output :
 -------------------------------------------------------------------------------
 function register( tGamemode, strName, strBaseClass )
