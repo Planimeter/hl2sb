@@ -16,7 +16,24 @@ if ( pMainFile:LoadFromFile( gamePath .. "/gameinfo.txt", "MOD" ) ) then
   print( "KeyValues: ")
   pMainFile:Print( 1 )
 
-  print( "Table: ")
-  table.print( pMainFile:ToTable(), 1 )
+  --[[
+  print( "KeyValues -> Table: ")
+  local tMainFile = pMainFile:ToTable()
+  table.print( tMainFile, false, 1 )
+
+  print( "Table -> KeyValues: ")
+  local pNewMainFile = table.tokeyvalues( tMainFile, "gameinfo.txt" )
+  pNewMainFile:Print( 1 )
+  pNewMainFile:deleteThis()
+  ]]
+
+  print( "KeyValues -> Table (Order preserved): ")
+  tMainFile = pMainFile:ToTable( true )
+  table.print( tMainFile, true, 1 )
+
+  print( "Table (Order preserved) -> KeyValues: ")
+  local pNewMainFile = table.tokeyvalues( tMainFile, "gameinfo.txt", true )
+  pNewMainFile:Print( 1 )
+  pNewMainFile:deleteThis()
 end
 pMainFile:deleteThis();

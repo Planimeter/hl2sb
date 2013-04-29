@@ -74,7 +74,7 @@ end
 function GM:LevelInit( strMapName, strMapEntities, strOldLevel, strLandmarkName, loadGame, background )
   gpGlobals.mapname = strMapName
 
-  self:DebugEntityNames()
+  -- self:DebugEntityNames()
   self:ResetChangeLevel()
   self:RemoveFallTriggers()
 

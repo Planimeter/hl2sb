@@ -21,26 +21,61 @@ function _R.KeyValues.Print( self, i )
   end
 end
 
-function _R.KeyValues.ToTable( self )
+function _R.KeyValues.ToTable( self, bPreserveOrder )
+  local i = 1
   local t = {}
   local pair = self:GetFirstSubKey()
   while pair ~= NULL_KEYVALUES do
     local k, v = pair:GetName(), pair:GetString()
-    t[ k ] = v
-    if ( t[ k ] == "" and self:GetDataType( pair:GetName() ) == 0 ) then
-      t[ k ]  = pair:ToTable()
+    if ( not bPreserveOrder ) then
+      t[ k ] = v
+    else
+      t[ i ] = {
+        key = k,
+        value = v
+      }
+    end
+    local bKeyValueIsEmpty
+    if ( not bPreserveOrder ) then
+      bKeyValueIsEmpty = t[ k ] == ""
+    else
+      bKeyValueIsEmpty = t[ i ].value == ""
+    end
+    if ( bKeyValueIsEmpty and self:GetDataType( pair:GetName() ) == 0 ) then
+      if ( not bPreserveOrder ) then
+        t[ k ] = pair:ToTable()
+      else
+        t[ i ].value = pair:ToTable( true )
+      end
       local isEmpty = true
-      for l, w in pairs( t[ k ] ) do
-        if ( w ) then
-          isEmpty = false
-          break
+      if ( not bPreserveOrder ) then
+        for l, w in pairs( t[ k ] ) do
+          if ( w ) then
+            isEmpty = false
+            break
+          end
+        end
+      else
+        for l, w in ipairs( t[ i ].value ) do
+          if ( w ) then
+            isEmpty = false
+            break
+          end
         end
       end
       if ( isEmpty ) then
-        t[ k ] = ""
+        if ( not bPreserveOrder ) then
+          t[ k ] = ""
+        else
+          t[ i ] = {
+            key = k,
+            value = ""
+          }
+        end
       end
     end
     pair = pair:GetNextKey()
+    i = i + 1
   end
   return t
 end

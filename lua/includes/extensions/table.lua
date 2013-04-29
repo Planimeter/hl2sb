@@ -8,6 +8,7 @@ require( "table" )
 
 local setmetatable = setmetatable
 local getmetatable = getmetatable
+local KeyValues = KeyValues
 local pairs = pairs
 local print = print
 
@@ -68,18 +69,59 @@ function table.merge( dest, src )
 	end
 end
 
-function table.print( t, i )
+function table.print( t, bOrdered, i )
   i = i or 0
   local indent = ""
   for j = 1, i do
     indent = indent .. "\t"
   end
-  for k, v in pairs( t ) do
-    if ( type( v ) == "table" ) then
-      print( indent .. k )
-      table.print( v, i + 1 )
-    else
-      print( indent .. k, v )
+  if ( not bOrdered ) then
+    for k, v in pairs( t ) do
+      if ( type( v ) == "table" ) then
+        print( indent .. k )
+        table.print( v, false, i + 1 )
+      else
+        print( indent .. k, v )
+      end
+    end
+  else
+    for j, pair in ipairs( t ) do
+      if ( type( pair.value ) == "table" ) then
+        print( indent .. pair.key )
+        table.print( pair.value, true, i + 1 )
+      else
+        print( indent .. pair.key, pair.value )
+      end
     end
   end
+end
+
+function table.tokeyvalues( t, setName, bOrdered )
+  local pKV = KeyValues( setName )
+  if ( not bOrdered ) then
+    for k, v in pairs( t ) do
+      if ( type( v ) == "table" ) then
+        pKV:AddSubKey( table.tokeyvalues( v, k ) )
+      elseif ( type( v ) == "string" ) then
+        pKV:SetString( k, v )
+      elseif ( type( v ) == "number" ) then
+        pKV:SetFloat( k, v )
+      elseif ( type( v ) == "color" ) then
+        pKV:SetColor( k, v )
+      else
+        pKV:SetString( k, tostring( v ) )
+      end
+    end
+  else
+    for i, pair in ipairs( t ) do
+      if ( type( pair.value ) == "table" ) then
+        pKV:AddSubKey( table.tokeyvalues( pair.value, pair.key, true ) )
+      else
+        local pKey = pKV:CreateNewKey()
+        pKey:SetName( pair.key )
+        pKey:SetStringValue( tostring( pair.value ) )
+      end
+    end
+  end
+  return pKV
 end
