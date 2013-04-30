@@ -17,8 +17,8 @@ local tSpawnPointClassnames = {
   "info_player_start"
 }
 
-function GM:FlItemRespawnTime( pItem )
-  return -1
+function GM:AddLevelDesignerPlacedObject( pEntity )
+  return false
 end
 
 function GM:GiveDefaultItems( pPlayer )
@@ -27,7 +27,8 @@ function GM:GiveDefaultItems( pPlayer )
 end
 
 function GM:ItemShouldRespawn( pItem )
-  return 6
+  pItem:AddSpawnFlags( 2^30 )
+  -- return 6
 end
 
 function GM:PlayerEntSelectSpawnPoint( pHL2MPPlayer )

@@ -6,15 +6,16 @@
 
 include( "shared.lua" )
 
-function GM:FlItemRespawnTime( pItem )
-  return -1
+function GM:AddLevelDesignerPlacedObject( pEntity )
+  return false
 end
 
 function GM:GiveDefaultItems( pHL2MPPlayer )
 end
 
 function GM:ItemShouldRespawn( pItem )
-  return 6
+  pItem:AddSpawnFlags( 2^30 )
+  -- return 6
 end
 
 function GM:DebugEntityNames()
@@ -99,11 +100,15 @@ function GM:CheckPickups()
   end
 end
 
-local g_bFirstPlayerSpawned = false
+function GM:PlayerGotItem( pPlayer, pItem )
+  pItem:Remove()
+end
 
 function GM:PlayerInitialSpawn( pPlayer )
   self:CheckPickups()
 end
+
+local g_bFirstPlayerSpawned = false
 
 function GM:PlayerSpawn( pPlayer )
   for _, classname in ipairs( self.m_tPickups ) do
@@ -128,8 +133,4 @@ function GM:PlayerSpawn( pPlayer )
 end
 
 function GM:PlayerPickupObject( pHL2MPPlayer, pObject, bLimitMassAndSize )
-end
-
-function GM:WeaponShouldRespawn( pItem )
-  return 2
 end

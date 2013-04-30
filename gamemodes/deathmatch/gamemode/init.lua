@@ -125,6 +125,9 @@ end
 function GM:PlayerEntSelectSpawnPoint( pHL2MPPlayer )
 end
 
+function GM:PlayerGotItem( pPlayer, pItem )
+end
+
 function GM:PlayerInitialSpawn( pPlayer )
 end
 

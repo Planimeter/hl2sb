@@ -5,7 +5,7 @@
 --===========================================================================--
 
 GM.Name			= "Campaign"
-GM.Homepage		= "http://www.half-life2sandbox.com/"
+GM.Homepage		= "http://www.andrewmcwatters.com/hl2sb/"
 GM.Developer	= "Team Sandbox"
 
 function GM:Initialize()
@@ -92,6 +92,11 @@ end
 	return false
 end
 
-function GM:WeaponShouldRespawn( pWeapon )
-  return 2 -- GR_WEAPON_RESPAWN_NO
+function GM:OnEntityCreated( pEntity )
+  -- TODO: Replace vehicles with vehicle spawners
+end
+
+function GM:WeaponShouldRespawn( pItem )
+  pItem:AddSpawnFlags( 2^30 )
+  -- return 2
 end
