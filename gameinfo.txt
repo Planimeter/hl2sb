@@ -13,8 +13,8 @@
 		"test_hardware"		1
 	}
 	developer "Team Sandbox"
-	developer_url "http://www.half-life2sandbox.com/"
-	manual "http://www.half-life2sandbox.com/manual"
+	developer_url "http://www.andrewmcwatters.com/hl2sb/"
+	manual "http://www.andrewmcwatters.com/hl2sb/wiki/Main_Page"
 
 
 	FileSystem
