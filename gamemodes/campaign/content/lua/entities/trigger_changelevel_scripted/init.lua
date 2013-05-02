@@ -5,7 +5,7 @@
 --===========================================================================--
 
 if ( not bit ) then
-  bit = require( "bit" )
+  require( "bit" )
 end
 
 local Msg = dbg.Msg

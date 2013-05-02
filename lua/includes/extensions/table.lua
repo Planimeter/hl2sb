@@ -8,9 +8,10 @@ require( "table" )
 
 local setmetatable = setmetatable
 local getmetatable = getmetatable
-local KeyValues = KeyValues
 local pairs = pairs
+local type = type
 local print = print
+local KeyValues = KeyValues
 
 function table.copy( t, tRecursive )
   if ( t == nil ) then
