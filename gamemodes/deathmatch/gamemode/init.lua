@@ -88,7 +88,8 @@ function GM:GiveDefaultItems( pPlayer )
 
 	local pDefaultWeapon = pPlayer:Weapon_OwnsThisType( szDefaultWeaponName );
 
-	if ( pDefaultWeapon ~= NULL ) then
+	-- TODO: Fix __eq metamethod!!
+	if ( tostring( pDefaultWeapon ) ~= "NULL" ) then
 		pPlayer:Weapon_Switch( pDefaultWeapon );
 	else
 		pPlayer:Weapon_Switch( pPlayer:Weapon_OwnsThisType( "weapon_physcannon" ) );
