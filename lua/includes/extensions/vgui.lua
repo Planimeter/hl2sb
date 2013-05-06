@@ -16,18 +16,18 @@ local tHelpers = {}
 
 -------------------------------------------------------------------------------
 -- Purpose: Registers a panel and creates a factory for it in the vgui
---			namespace
+--          namespace
 -- Input  : tPanel - Panel table object
---			strName - Name of the panel
---			strBaseClass - Name of the base class
+--          strName - Name of the panel
+--          strBaseClass - Name of the base class
 -- Output :
 -------------------------------------------------------------------------------
 function vgui.register( tPanel, strName, strBaseClass )
   if ( vgui[ strName ] ~= nil ) then
-    error( "attempt to register existing panel class \"" .. strName	.. "\"", 2 )
+    error( "attempt to register existing panel class \"" .. strName .. "\"", 2 )
   end
   if ( vgui[ strBaseClass ] == nil ) then
-  	error( "attempt to register panel class with non-existing base class", 2 )
+    error( "attempt to register panel class with non-existing base class", 2 )
   end
   tPanel.__classname = strName
   tPanel.__base = strBaseClass

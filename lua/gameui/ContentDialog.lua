@@ -4,6 +4,8 @@
 --
 --===========================================================================--
 
+include( "../includes/extensions/panel.lua" )
+
 local FCVAR_CLIENTDLL = _E.FCVAR.CLIENTDLL
 
 require( "concommand" )
@@ -24,16 +26,17 @@ local function PositionDialog(dlg)
 end
 
 local function ContentDialog()
-	local hFrame = vgui.Frame(VGui_GetGameUIPanel(), "ContentDialog")
-	hFrame:SetBounds(0, 0, 512, 406);
-	hFrame:SetSizeable( false );
+	local hDialog = vgui.PropertyDialog(VGui_GetGameUIPanel(), "ContentDialog")
+	hDialog:SetDeleteSelfOnClose(true);
+	hDialog:SetBounds(0, 0, 512, 406);
+	hDialog:SetSizeable( false );
 
-	hFrame:SetTitle("#GameUI_Content", true);
-	return hFrame
+	hDialog:SetTitle("#GameUI_Content", true);
+	return hDialog
 end
 
 local function OnOpenContentDialog()
-	if ( hContentDialog == INVALID_PANEL ) then
+	if ( ToPanel( hContentDialog ) == INVALID_PANEL ) then
 		hContentDialog = ContentDialog();
 		PositionDialog( hContentDialog );
 	end

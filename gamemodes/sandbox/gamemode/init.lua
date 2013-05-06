@@ -23,7 +23,7 @@ end
 
 function GM:GiveDefaultItems( pPlayer )
   pPlayer:GiveNamedItem( "weapon_physgun" )
-  self.BaseClass:GiveDefaultItems( pPlayer )
+  self.BaseClass.GiveDefaultItems( self, pPlayer )
 end
 
 function GM:ItemShouldRespawn( pItem )

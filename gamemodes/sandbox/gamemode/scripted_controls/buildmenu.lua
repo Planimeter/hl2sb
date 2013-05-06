@@ -71,7 +71,7 @@ end
 function CBuildMenu:Update()
 end
 function CBuildMenu:OnClose()
-	self.BaseClass:OnClose();
+	self.BaseClass.OnClose( self );
 end
 
 vgui.register( CBuildMenu, "CBuildMenu", "Panel" )
