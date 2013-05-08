@@ -28,7 +28,7 @@ if ( pMainFile:LoadFromFile( gamePath .. "/gameinfo.txt", "MOD" ) ) then
   ]]
 
   print( "KeyValues -> Table (Order preserved): ")
-  tMainFile = pMainFile:ToTable( true )
+  local tMainFile = pMainFile:ToTable( true )
   table.print( tMainFile, true, 1 )
 
   print( "Table (Order preserved) -> KeyValues: ")
