@@ -1,46 +1,46 @@
---========== Copyleft Â© 2010, Team Sandbox, Some rights reserved. ===========--
+--========= Copyleft © 2010-2013, Team Sandbox, Some rights reserved. ============--
 --
--- Purpose: 
+-- Purpose:
 --
+-- $NoKeywords: $
 --===========================================================================--
 
-include( "../includes/extensions/panel.lua" )
+include( "../includes/extensions/table.lua" );
+include( "../includes/extensions/vgui.lua" );
 
-local FCVAR_CLIENTDLL = _E.FCVAR.CLIENTDLL
+local vgui = vgui;
 
-require( "concommand" )
+local CContentDialog = {}
 
-local hContentDialog = INVALID_PANEL
+-------------------------------------------------------------------------------
+-- Purpose: Basic help dialog
+-------------------------------------------------------------------------------
+function CContentDialog:Init(parent, panelName)
+	self:SetDeleteSelfOnClose(true);
+	self:SetBounds(0, 0, 512, 406);
+	self:SetSizeable( false );
 
-local function PositionDialog(dlg)
-	if ( dlg == INVALID_PANEL ) then
-		return;
-	end
+	self:SetTitle("#GameUI_Content", true);
 
-	local x, y, ww, wt, wide, tall;
-	x, y, ww, wt = surface.GetWorkspaceBounds();
-	wide, tall = dlg:GetSize();
+	-- debug timing code, this function takes too long
+--	local s4 = system.GetCurrentTime();
 
-	-- Center it, keeping requested size
-	dlg:SetPos(x + ((ww - wide) / 2), y + ((wt - tall) / 2));
+	self:AddPage(vgui.CContentSubGames(self, ""), "#GameUI_Games");
+	-- self:AddPage(vgui.CContentSubAddons(self), "#GameUI_Addons");
+
+--	local s5 = system.GetCurrentTime();
+--	Msg("CContentDialog:Init(): " .. (s5 - s4) * 1000.0 .. "ms\n");
+
+	self:SetApplyButtonVisible(true);
+	-- self:GetPropertySheet():SetTabWidth(84);
 end
 
-local function ContentDialog()
-	local hDialog = vgui.PropertyDialog(VGui_GetGameUIPanel(), "ContentDialog")
-	hDialog:SetDeleteSelfOnClose(true);
-	hDialog:SetBounds(0, 0, 512, 406);
-	hDialog:SetSizeable( false );
-
-	hDialog:SetTitle("#GameUI_Content", true);
-	return hDialog
+-------------------------------------------------------------------------------
+-- Purpose: Opens the dialog
+-------------------------------------------------------------------------------
+function CContentDialog:Run()
+	self:SetTitle("#GameUI_Content", true);
+	self:Activate();
 end
 
-local function OnOpenContentDialog()
-	if ( ToPanel( hContentDialog ) == INVALID_PANEL ) then
-		hContentDialog = ContentDialog();
-		PositionDialog( hContentDialog );
-	end
-	hContentDialog:Activate();
-end
-
-concommand.Create( "OpenContentDialog", OnOpenContentDialog, "Open content dialog.", FCVAR_CLIENTDLL )
+vgui.register( CContentDialog, "CContentDialog", "PropertyDialog" )
