@@ -158,6 +158,22 @@ end
 -- Purpose: 
 -------------------------------------------------------------------------------
 function CContentSubGames:OnApplyChanges()
+	local pGameContent = KeyValues( "GameContent" )
+	local pFileSystemKey = pGameContent:CreateNewKey()
+	pFileSystemKey:SetName( "FileSystem" )
+	local checkButtonName
+	local pCheckButton
+	for i=1, #g_GameCheckButtons do
+		checkButtonName = g_GameCheckButtons[i][1]
+		pCheckButton = self[ checkButtonName ]
+		if ( pCheckButton and pCheckButton:IsSelected() ) then
+			local AppId = KeyValues( "AppId" )
+			AppId:SetStringValue( tostring( g_GameCheckButtons[i][2] ) )
+			pFileSystemKey:AddSubKey( AppId )
+		end
+	end
+	pGameContent:SaveToFile( "gamecontent.txt", "MOD" )
+	pGameContent:deleteThis()
 end
 
 vgui.register( CContentSubGames, "CContentSubGames", "PropertyPage" )
