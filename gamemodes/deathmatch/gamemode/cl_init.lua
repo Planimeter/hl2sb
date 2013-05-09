@@ -42,5 +42,23 @@ end
 function GM:PlayerUpdateFlashlight( pHL2MPPlayer, position, vecForward, vecRight, vecUp, nDistance )
 end
 
+function GM:ShouldDrawCrosshair()
+end
+
+function GM:ShouldDrawDetailObjects()
+end
+
+function GM:ShouldDrawEntity( pEnt )
+end
+
+function GM:ShouldDrawFog()
+end
+
 function GM:ShouldDrawLocalPlayer()
+end
+
+function GM:ShouldDrawParticles()
+end
+
+function GM:ShouldDrawViewModel()
 end
