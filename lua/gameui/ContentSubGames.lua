@@ -130,7 +130,7 @@ function CContentSubGames:OnResetData()
 	local pMainFile = KeyValues( "gamecontent.txt" );
 	if ( pMainFile:LoadFromFile( engine.GetGameDirectory() .. "/gamecontent.txt", "MOD" ) ) then
 		local tMainFile = pMainFile:ToTable( true )
-		if ( tMainFile[1].value ) then
+		if ( tMainFile[1].value and type( tMainFile[1].value ) == "table" ) then
 			for i, pair in ipairs( tMainFile[1].value ) do
 				local checkButtonName
 				for j=1, #g_GameCheckButtons do
