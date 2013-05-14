@@ -9,6 +9,9 @@ include( "shared.lua" )
 function GM:ActivateClientUI()
 end
 
+function GM:AdjustEngineViewport( x, y, width, height )
+end
+
 function GM:CanShowSpeakerLabels()
 end
 
