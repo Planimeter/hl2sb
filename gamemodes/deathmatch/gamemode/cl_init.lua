@@ -33,6 +33,9 @@ end
 function GM:HudViewportPaint()
 end
 
+function GM:KeyInput( down, keynum, pszCurrentBinding )
+end
+
 function GM:LevelInitPreEntity()
 end
 

@@ -14,6 +14,7 @@ require( "hook" )
 
 local INVALID_FONT = INVALID_FONT
 local setmetatable = setmetatable
+local ipairs = ipairs
 local type = type
 local ComputeStringWidth = UTIL.ComputeStringWidth
 local GetFontName = _R.IScheme.GetFontName
