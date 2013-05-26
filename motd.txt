@@ -33,7 +33,7 @@ a:hover {
 <body scroll="no">
 <pre>
 You are playing Half-Life 2 Sandbox
-Visit the official Half-Life 2 Sandbox web site @ www.half-life2sandbox.com
+Visit the official Half-Life 2 Sandbox web site @ www.andrewmcwatters.com/hl2sb
 </pre>
 </body>
 </html>
