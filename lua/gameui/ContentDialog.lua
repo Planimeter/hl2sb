@@ -26,7 +26,7 @@ function CContentDialog:Init(parent, panelName)
 --	local s4 = system.GetCurrentTime();
 
 	self:AddPage(vgui.CContentSubGames(self, ""), "#GameUI_Games");
-	-- self:AddPage(vgui.CContentSubAddons(self), "#GameUI_Addons");
+	-- self:AddPage(vgui.CContentSubAddons(self, ""), "#GameUI_Addons");
 
 --	local s5 = system.GetCurrentTime();
 --	Msg("CContentDialog:Init(): " .. (s5 - s4) * 1000.0 .. "ms\n");

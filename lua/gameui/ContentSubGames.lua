@@ -1,4 +1,4 @@
---========= Copyleft © 1996-2005, Team Sandbox, Some rights reserved. ============--
+--========= Copyleft © 2010-2013, Team Sandbox, Some rights reserved. ============--
 --
 -- Purpose: 
 --
