@@ -48,17 +48,17 @@ DESCRIPTION SERVER_OPTIONS
 		{ "Half-Life 2 Sandbox" }
 	}
 
-	"gamemode"
-	{
-		"#Hl2sb_Gamemode"
-		{
-			LIST
-			"#Hl2sb_Sandbox" "sandbox"
-			"#Hl2sb_Campaign" "campaign"
-			"#Hl2sb_Deathmatch" "deathmatch"
-		}
-		{ "0" }
-	}
+// 	"gamemode"
+// 	{
+// 		"#Hl2sb_Gamemode"
+// 		{
+// 			LIST
+// 			"#Hl2sb_Sandbox" "sandbox"
+// 			"#Hl2sb_Campaign" "campaign"
+// 			"#Hl2sb_Deathmatch" "deathmatch"
+// 		}
+// 		{ "0" }
+// 	}
 
 	"sv_password"
 	{
