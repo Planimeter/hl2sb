@@ -12,9 +12,9 @@
 		"test_speakers"		1
 		"test_hardware"		1
 	}
-	developer "Team Sandbox"
-	developer_url "http://www.andrewmcwatters.com/hl2sb/"
-	manual "http://www.andrewmcwatters.com/hl2sb/wiki/Main_Page"
+	developer "Planimeter"
+	developer_url "https://github.com/Planimeter/hl2sb"
+	manual "https://github.com/Planimeter/hl2sb"
 
 
 	FileSystem
