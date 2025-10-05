@@ -1,39 +1,61 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
-<html>
-<head>
-<title>HL2SB MOTD</title>
-<style type="text/css">
-pre 	{
-		font-family:Verdana,Tahoma;
-		color:#FFB000;
-    	}
-body	{
-		background:#000000;
-		margin-left:8px;
-		margin-top:0px;
-		}
-a	{
-    	text-decoration:    underline;
-	}
-a:link  {
-    color:  #FFFFFF;
-    }
-a:visited   {
-    color:  #FFFFFF;
-    }
-a:active    {
-    color:  #FFFFFF;
-    }
-a:hover {
-    color:  #FFFFFF;
-    text-decoration:    underline;
-    }
-</style>
-</head>
-<body scroll="no">
-<pre>
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title>HL2SB MOTD</title>
+		<style>
+			pre {
+				font-family: Verdana, Tahoma;
+				color: #FFF;
+
+				/* @ThePixelMoon: I dunno if this works with
+				the version of CSS that Source 2007 is using,
+				but if it does, let me know. */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			body {
+				background: #0c1f25;
+				margin-left: 8px;
+				margin-top: 0px;
+			}
+
+			/* @ThePixelMoon: Why doesn't the scroll="no" work anymore? */
+			html, body {
+				overflow: hidden;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				text-decoration: underline;
+			}
+
+			a:link  {
+				color: #FFF;
+			}
+
+			a:visited {
+				color: #FFF;
+			}
+
+			a:active {
+				color: #FFF;
+			}
+
+			a:hover {
+				color: #FFF;
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body scroll="no">
+		<pre>
 You are playing Half-Life 2 Sandbox
-Visit the official Half-Life 2 Sandbox web site @ www.andrewmcwatters.com/hl2sb
-</pre>
-</body>
+Visit the official Half-Life 2 Sandbox website @ github.com/Planimeter/hl2sb
+		</pre>
+	</body>
 </html>
