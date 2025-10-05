@@ -1,12 +1,12 @@
---========== Copyleft © 2010, Team Sandbox, Some rights reserved. ===========--
+--========== Copyleft Â© 2010, Team Sandbox, Some rights reserved. ===========--
 --
 -- Purpose:
 --
 --===========================================================================--
 
 GM.Name			= "Campaign"
-GM.Homepage		= "http://www.andrewmcwatters.com/hl2sb/"
-GM.Developer	= "Team Sandbox"
+GM.Homepage		= "https://github.com/Planimeter/hl2sb"
+GM.Developer	= "Planimeter"
 GM.Manual		= nil
 
 function GM:Initialize()
@@ -101,3 +101,4 @@ function GM:WeaponShouldRespawn( pItem )
   pItem:AddSpawnFlags( 2^30 )
   -- return 2
 end
+
